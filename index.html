@@ -29,13 +29,20 @@
             </nav>
 
             <!--Search Result Card-->
-            <div class="card" style="width: 300px">
+            <!--
+            <div class="card" style="width: 300px" v-show="recipeName">
                 <img class="card-img-top" v-bind:src="recipeImg">
                 <div class="card-body">
                     <h4 class="card-title">{{recipeName}}</h4>
-                    <small>by <a v-bind:href="recipeUrl" class="card-link">{{recipeSource}}</a></small>
+                    <small v-show="recipeUrl">by <a v-bind:href="recipeUrl" class="card-link">{{recipeSource}}</a></small>
                 </div>
-            </div>
+            </div>-->
+
+            <result-card v-bind:name="recipeName"
+                v-bind:source="recipeSource"
+                v-bind:url="recipeUrl"
+                v-bind:img="recipeImg">
+            </result-card>
 
         </div>
 
@@ -44,6 +51,19 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         
         <script>
+            Vue.component('result-card', {
+                props: ['name','source','url','img'],
+                template: '\
+                <div class="card" style="width: 300px" v-show="name">\
+                    <img class="card-img-top" v-bind:src="img">\
+                    <div class="card-body">\
+                        <h4 class="card-title">{{name}}</h4>\
+                        <small v-show="url">by <a v-bind:href="url" class="card-link">{{source}}</a></small>\
+                    </div>\
+                </div>\
+                '
+            })
+            
             var app = new Vue({
                 el: '#app',
                 data: {
