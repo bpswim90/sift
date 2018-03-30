@@ -28,12 +28,14 @@
                 </div>
             </nav>
 
-            <result-card v-for="recipe in recipes"
-                v-bind:name="recipe.label"
-                v-bind:source="recipe.source"
-                v-bind:url="recipe.url"
-                v-bind:img="recipe.image">
-            </result-card>
+            <div class="card-columns">
+                <result-card v-for="recipe in recipes"
+                    v-bind:name="recipe.label"
+                    v-bind:source="recipe.source"
+                    v-bind:url="recipe.url"
+                    v-bind:img="recipe.image">
+                </result-card>
+            </div>
 
         </div>
 
@@ -45,7 +47,7 @@
             Vue.component('result-card', {
                 props: ['name','source','url','img'],
                 template: '\
-                <div class="card" style="width: 300px; margin: 10px" v-show="name">\
+                <div class="card" style="display: inline-block" v-show="name">\
                     <img class="card-img-top" v-bind:src="img">\
                     <div class="card-body">\
                         <h4 class="card-title">{{name}}</h4>\
@@ -65,7 +67,7 @@
                         var app = this
                         app.recipes = []
                         
-                        $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=3",
+                        $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=10",
                             function(json) {
                                 json.hits.forEach(function (result) {
                                     app.recipes.push(result.recipe)
