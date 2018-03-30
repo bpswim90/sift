@@ -11,31 +11,31 @@
         <!-- VueJS package, development version -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
-    <body class="container-fluid">
-        <nav class="navbar navbar-expand navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1">Sift</span>
-
-            <div class="navbar-collapse collapse">
-                <form class="mx-2 my-auto d-inline w-100">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-success" type="submit">Search</button>         
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </nav>
-
+    <body class="container-fluid" style="padding-top:4em">
         <div id="app">
-            {{ message }}
+            <nav class="navbar navbar-expand navbar-light bg-light fixed-top">
+                <span class="navbar-brand mb-0 h1">Sift</span>
+
+                <div class="navbar-collapse collapse">
+                    <form class="mx-2 my-auto d-inline w-100">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Search" v-model="searchTerm">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-success" type="submit">Search</button>         
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+
+            <span>{{searchTerm}}</span>
         </div>
 
         <script>
             var app = new Vue({
                 el: '#app',
                 data: {
-                    message: 'Hellooo world!'
+                    searchTerm: ''
                 }
             })
         </script>
