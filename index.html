@@ -28,20 +28,11 @@
                 </div>
             </nav>
 
-            <!--Search Result Card-->
-            <!--
-            <div class="card" style="width: 300px" v-show="recipeName">
-                <img class="card-img-top" v-bind:src="recipeImg">
-                <div class="card-body">
-                    <h4 class="card-title">{{recipeName}}</h4>
-                    <small v-show="recipeUrl">by <a v-bind:href="recipeUrl" class="card-link">{{recipeSource}}</a></small>
-                </div>
-            </div>-->
-
-            <result-card v-bind:name="recipeName"
-                v-bind:source="recipeSource"
-                v-bind:url="recipeUrl"
-                v-bind:img="recipeImg">
+            <result-card v-for="recipe in recipes"
+                v-bind:name="recipe.label"
+                v-bind:source="recipe.source"
+                v-bind:url="recipe.url"
+                v-bind:img="recipe.image">
             </result-card>
 
         </div>
@@ -54,7 +45,7 @@
             Vue.component('result-card', {
                 props: ['name','source','url','img'],
                 template: '\
-                <div class="card" style="width: 300px" v-show="name">\
+                <div class="card" style="width: 300px; margin: 10px" v-show="name">\
                     <img class="card-img-top" v-bind:src="img">\
                     <div class="card-body">\
                         <h4 class="card-title">{{name}}</h4>\
@@ -67,25 +58,18 @@
             var app = new Vue({
                 el: '#app',
                 data: {
-                    searchTerm: '',
-                    recipeName: '',
-                    recipeSource: '',
-                    recipeUrl: '',
-                    recipeImg: ''
+                    recipes: []
                 },
                 methods: {
                     recipeSearch: function () {
                         var app = this
-                        app.recipeName = "Searching..."
-                        var result = ""
+                        app.recipes = []
                         
-                        $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=1",
+                        $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=3",
                             function(json) {
-                                var theRecipe = json.hits[0].recipe
-                                app.recipeName = theRecipe.label
-                                app.recipeSource = theRecipe.source
-                                app.recipeUrl = theRecipe.url
-                                app.recipeImg = theRecipe.image
+                                json.hits.forEach(function (result) {
+                                    app.recipes.push(result.recipe)
+                                })
                             }
                         );
                     }
