@@ -17,7 +17,7 @@
                 <span class="navbar-brand mb-0 h1">Sift</span>
 
                 <div class="navbar-collapse collapse">
-                    <form class="mx-2 my-auto d-inline w-100">
+                    <form class="mx-2 my-auto d-inline w-100" v-on:submit.prevent="recipeSearch">
                         <div class="input-group">
                             <input class="form-control" type="text" placeholder="Search" v-model="searchTerm">
                             <div class="input-group-append">
@@ -28,10 +28,13 @@
                 </div>
             </nav>
 
-            <span>{{searchTerm}}</span>
+            <span>{{recipeName}}</span>
+            <span>{{recipeSource}}</span>
+            <span>{{recipeImg}}</span>
+            <span>{{recipeUrl}}</span>
         </div>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         
@@ -39,7 +42,28 @@
             var app = new Vue({
                 el: '#app',
                 data: {
-                    searchTerm: ''
+                    searchTerm: '',
+                    recipeName: '',
+                    recipeSource: '',
+                    recipeUrl: '',
+                    recipeImg: ''
+                },
+                methods: {
+                    recipeSearch: function () {
+                        var app = this
+                        app.recipeName = "Searching..."
+                        var result = ""
+                        
+                        $.getJSON("https://api.edamam.com/search?q=chicken&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=1",
+                            function(json) {
+                                var theRecipe = json.hits[0].recipe
+                                app.recipeName = theRecipe.label
+                                app.recipeSource = theRecipe.source
+                                app.recipeUrl = theRecipe.url
+                                app.recipeImg = theRecipe.image
+                            }
+                        );
+                    }
                 }
             })
         </script>
