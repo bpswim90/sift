@@ -28,10 +28,14 @@
                 </div>
             </nav>
 
-            <span>{{recipeName}}</span>
-            <span>{{recipeSource}}</span>
-            <span>{{recipeImg}}</span>
-            <span>{{recipeUrl}}</span>
+            <!--Search Result Card-->
+            <div class="card" style="width: 300px">
+                <img class="card-img-top" v-bind:src="recipeImg">
+                <div class="card-body">
+                    <h4 class="card-title">{{recipeName}}</h4>
+                    <small>by <a v-bind:href="recipeUrl" class="card-link">{{recipeSource}}</a></small>
+                </div>
+            </div>
         </div>
 
         <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
