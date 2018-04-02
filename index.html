@@ -28,6 +28,10 @@
                 </div>
             </nav>
 
+            <div class="filters" style="overflow: auto; white-space: nowrap; padding-bottom: 15px">
+                <button type="button" class="btn btn-outline-primary mx-1" data-toggle="button" v-for="source in filterSources">{{source}}</button>
+            </div>
+
             <div class="card-columns">
                 <result-card v-for="recipe in recipes"
                     v-bind:name="recipe.label"
@@ -64,13 +68,23 @@
                     favoriteSources: [],
                     searchTerm: ""
                 },
+                computed: {
+                    filterSources: function() {
+                        var sources = []
+                        this.recipes.forEach(function (recipe) {
+                            if (sources.indexOf(recipe.source) === -1)
+                                sources.push(recipe.source)
+                        })
+                        return sources.sort()
+                    }
+                },
                 methods: {
                     //Search with no filters
                     recipeSearch: function () {
                         var app = this
                         app.recipes = []
                         
-                        $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=10",
+                        $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=50",
                             function(json) {
                                 json.hits.forEach(function (result) {
                                     app.recipes.push(result.recipe)
