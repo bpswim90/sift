@@ -29,7 +29,17 @@
             </nav>
 
             <div class="filters" style="overflow: auto; white-space: nowrap; padding-bottom: 15px">
-                <button type="button" class="btn btn-outline-primary mx-1" data-toggle="button" v-for="source in filterSources">{{source}}</button>
+                <button v-for="source in filterSources" type="button" class="btn btn-outline-primary mx-1" data-toggle="button"
+                    v-on:click="addToFavorites(source)">{{source}}</button>
+            </div>
+
+            <!--Temporary test div to display favoriteSources-->
+            <div>
+                <ul>
+                    <li v-for="source in favoriteSources">
+                        {{source}}
+                    </li>
+                </ul>
             </div>
 
             <div class="card-columns">
@@ -107,6 +117,13 @@
                                 })
                             }
                         );
+                    },
+
+                    addToFavorites: function(source) {
+                        var app = this
+                        if (this.favoriteSources.indexOf(source) === -1){
+                            this.favoriteSources.push(source)
+                        }
                     }
                 }
             })
