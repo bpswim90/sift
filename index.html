@@ -30,7 +30,7 @@
 
             <div class="filters" style="overflow: auto; white-space: nowrap; padding-bottom: 15px">
                 <button v-for="source in filterSources" type="button" class="btn btn-outline-primary mx-1" data-toggle="button"
-                    v-on:click="addToFavorites(source)">{{source}}</button>
+                    v-on:click="toggleIsFavorite(source)">{{source}}</button>
             </div>
 
             <!--Temporary test div to display favoriteSources-->
@@ -119,10 +119,13 @@
                         );
                     },
 
-                    addToFavorites: function(source) {
+                    toggleIsFavorite: function(source) {
                         var app = this
                         if (this.favoriteSources.indexOf(source) === -1){
                             this.favoriteSources.push(source)
+                        } else {
+                           var sourceIndex = this.favoriteSources.indexOf(source)
+                           this.favoriteSources.splice(sourceIndex, 1)
                         }
                     }
                 }
