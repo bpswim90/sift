@@ -30,16 +30,8 @@
 
             <div class="filters" style="overflow: auto; white-space: nowrap; padding-bottom: 15px">
                 <button v-for="source in filterSources" type="button" class="btn btn-outline-primary mx-1" data-toggle="button"
+                    v-bind:class="{ active: isFavorite(source) }"
                     v-on:click="toggleIsFavorite(source)">{{source}}</button>
-            </div>
-
-            <!--Temporary test div to display favoriteSources-->
-            <div>
-                <ul>
-                    <li v-for="source in favoriteSources">
-                        {{source}}
-                    </li>
-                </ul>
             </div>
 
             <div class="card-columns">
@@ -47,7 +39,8 @@
                     v-bind:name="recipe.label"
                     v-bind:source="recipe.source"
                     v-bind:url="recipe.url"
-                    v-bind:img="recipe.image">
+                    v-bind:img="recipe.image"
+                    v-show="favoriteSources.length === 0 || isFavorite(recipe.source)">
                 </result-card>
             </div>
 
@@ -79,6 +72,7 @@
                     searchTerm: ""
                 },
                 computed: {
+                    //Computes an alphabetical list of recipe sources for the filter buttons
                     filterSources: function() {
                         var sources = []
                         this.recipes.forEach(function (recipe) {
@@ -117,6 +111,14 @@
                                 })
                             }
                         );
+                    },
+
+                    isFavorite: function(source) {
+                        if (this.favoriteSources.indexOf(source) > -1) {
+                            return true
+                        } else {
+                            return false
+                        }
                     },
 
                     toggleIsFavorite: function(source) {
