@@ -28,7 +28,9 @@
                 </div>
             </nav>
 
-            <div class="filters" style="overflow: auto; white-space: nowrap; padding-bottom: 15px">
+            <div class="filters" style="overflow: auto; white-space: nowrap; padding-bottom: 15px" v-show="recipes.length !== 0">
+                <button type="button" class="btn btn-primary mx-1"
+                    v-on:click="resetFavoriteSources">Reset Filters</button>
                 <button v-for="source in filterSources" type="button" class="btn btn-outline-primary mx-1" data-toggle="button"
                     v-bind:class="{ active: isFavorite(source) }"
                     v-on:click="toggleIsFavorite(source)">{{source}}</button>
@@ -129,6 +131,11 @@
                            var sourceIndex = this.favoriteSources.indexOf(source)
                            this.favoriteSources.splice(sourceIndex, 1)
                         }
+                    },
+
+                    resetFavoriteSources: function() {
+                        var app = this
+                        this.favoriteSources = []
                     }
                 }
             })
