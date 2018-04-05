@@ -10,6 +10,23 @@
 
         <!-- VueJS package, development version -->
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style>
+            @media (min-width: 0px) {
+                .card-columns {
+                    column-count: 2;
+                }
+            }
+            @media (min-width: 768px) {
+                .card-columns {
+                    column-count: 3;
+                }
+            }
+            @media (min-width: 992px) {
+                .card-columns {
+                    column-count: 4;
+                }
+            }
+        </style>
     </head>
     <body class="container-fluid" style="padding-top:4em">
         <div id="app">
@@ -29,9 +46,9 @@
             </nav>
 
             <div class="filters" style="overflow: auto; white-space: nowrap; padding-bottom: 15px" v-show="recipes.length !== 0">
-                <button type="button" class="btn btn-primary mx-1"
-                    v-on:click="resetFavoriteSources">Reset Filters</button>
-                <button v-for="source in filterSources" type="button" class="btn btn-outline-primary mx-1" data-toggle="button"
+                <button type="button" class="btn btn-secondary mx-1"
+                    v-on:click="resetFavoriteSources">Reset</button>
+                <button v-for="source in filterSources" type="button" class="btn btn-outline-secondary mx-1" data-toggle="button"
                     v-bind:class="{ active: isFavorite(source) }"
                     v-on:click="toggleIsFavorite(source)">{{source}}</button>
             </div>
