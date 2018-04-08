@@ -15,3 +15,13 @@
         column-count: 4;
     }
 }
+
+body {
+    padding-top: 4em
+}
+
+.filters {
+    overflow: auto;
+    white-space: nowrap;
+    padding-bottom: 15px;
+}
