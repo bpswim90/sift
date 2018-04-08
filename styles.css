@@ -16,10 +16,12 @@
     }
 }
 
+/* Padding required to make space for fixed nav */
 body {
     padding-top: 4em
 }
 
+/* Side-scrolling filters div */
 .filters {
     overflow: auto;
     white-space: nowrap;
