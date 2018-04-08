@@ -1,5 +1,4 @@
 
-
 Vue.component('result-card', {
     props: ['name','source','url','img'],
     template: '\
