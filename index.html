@@ -15,46 +15,12 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body class="container-fluid">
-        <div id="app">
-            <nav class="navbar navbar-expand navbar-light bg-light fixed-top">
-                <span class="navbar-brand mb-0 h1">Sift</span>
-
-                <div class="navbar-collapse collapse">
-                    <form class="mx-2 my-auto d-inline w-100" v-on:submit.prevent="recipeSearch">
-                        <div class="input-group">
-                            <input class="form-control" type="text" placeholder="Search" v-model="searchTerm">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-success" type="submit">Search</button>         
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </nav>
-
-            <div class="filters" v-show="recipes.length !== 0">
-                <button type="button" class="btn btn-secondary mx-1"
-                    v-on:click="resetFavoriteSources">Reset</button>
-                <button v-for="source in filterSources" type="button" class="btn btn-outline-secondary mx-1" data-toggle="button"
-                    v-bind:class="{ active: isFavorite(source) }"
-                    v-on:click="toggleIsFavorite(source)">{{source}}</button>
-            </div>
-
-            <div class="card-columns">
-                <result-card v-for="recipe in recipes"
-                    v-bind:name="recipe.label"
-                    v-bind:source="recipe.source"
-                    v-bind:url="recipe.url"
-                    v-bind:img="recipe.image"
-                    v-show="favoriteSources.length === 0 || isFavorite(recipe.source)">
-                </result-card>
-            </div>
-
-        </div>
+        <div id="app"></div>
 
         <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         
-        <script src="src/main.js"></script>
+        <script src="build.js"></script>
     </body>
 </html>
