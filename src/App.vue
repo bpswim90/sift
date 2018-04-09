@@ -36,14 +36,14 @@
 </template>
 
 <script>
-import ResultCard from "./components/ResultCard.vue";
+var ResultCard = require("./components/ResultCard.vue")
 
-export default {
+module.exports = {
     name: 'app',
     components: {
-        ResultCard
+        'result-card': ResultCard
     },
-    data () {
+    data: function () {
         return {
             recipes: [],
             favoriteSources: [],

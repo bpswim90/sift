@@ -9,10 +9,9 @@
 </template>
 
 <script>
-    export default {
-
-
-    }
+module.exports = {
+    props: ['name','img','url','source']
+}
 </script>
 
 <style>
