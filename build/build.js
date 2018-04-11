@@ -8278,32 +8278,7 @@ if (inBrowser) {
 module.exports = Vue;
 
 }).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"_process":7}],3:[function(require,module,exports){
-var inserted = exports.cache = {}
-
-function noop () {}
-
-exports.insert = function (css) {
-  if (inserted[css]) return noop
-  inserted[css] = true
-
-  var elem = document.createElement('style')
-  elem.setAttribute('type', 'text/css')
-
-  if ('textContent' in elem) {
-    elem.textContent = css
-  } else {
-    elem.styleSheet.cssText = css
-  }
-
-  document.getElementsByTagName('head')[0].appendChild(elem)
-  return function () {
-    document.getElementsByTagName('head')[0].removeChild(elem)
-    inserted[css] = false
-  }
-}
-
-},{}],4:[function(require,module,exports){
+},{"_process":6}],3:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -8311,116 +8286,13 @@ exports.insert = function (css) {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
-var ResultCard = require("./components/ResultCard.vue")
+var LogInBox = require("./components/LogInBox.vue")
 
 module.exports = {
     name: 'app',
     components: {
-        'result-card': ResultCard
-    },
-    data: function () {
-        return {
-            recipes: [],
-            favoriteSources: [],
-            searchTerm: ""
-        }
-    },
-    computed: {
-        //Computes an alphabetical list of recipe sources for the filter buttons
-        filterSources: function() {
-            var sources = []
-            this.recipes.forEach(function (recipe) {
-                if (sources.indexOf(recipe.source) === -1)
-                    sources.push(recipe.source)
-            })
-            return sources.sort()
-        }
-    },
-    methods: {
-        //Search with no filters
-        recipeSearch: function () {
-            var app = this
-            app.recipes = []
-            
-            $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=50",
-                function(json) {
-                    json.hits.forEach(function (result) {
-                        app.recipes.push(result.recipe)
-                    })
-                }
-            );
-        },
-        //For performing a new search with site filters selected
-        filterSearch: function() {
-            var app = this
-            app.recipes = []
-
-            $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=50",
-                function(json) {
-                    var filteredRecipes = json.hits.filter(function (result) {
-                        return (app.favoriteSources.indexOf(result.recipe.source) !== -1)
-                    })
-                    filteredRecipes.forEach(function(result) {
-                        app.recipes.push(result.recipe)
-                    })
-                }
-            );
-        },
-
-        isFavorite: function(source) {
-            if (this.favoriteSources.indexOf(source) > -1) {
-                return true
-            } else {
-                return false
-            }
-        },
-
-        toggleIsFavorite: function(source) {
-            var app = this
-            if (this.favoriteSources.indexOf(source) === -1){
-                this.favoriteSources.push(source)
-            } else {
-               var sourceIndex = this.favoriteSources.indexOf(source)
-               this.favoriteSources.splice(sourceIndex, 1)
-            }
-        },
-
-        resetFavoriteSources: function() {
-            var app = this
-            this.favoriteSources = []
-        }
+        'log-in-box': LogInBox
     }
 }
 
@@ -8428,25 +8300,20 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_c('nav',{staticClass:"navbar navbar-expand navbar-light bg-light fixed-top"},[_c('span',{staticClass:"navbar-brand mb-0 h1"},[_vm._v("Sift")]),_vm._v(" "),_c('div',{staticClass:"navbar-collapse collapse"},[_c('form',{staticClass:"mx-2 my-auto d-inline w-100",on:{"submit":function($event){$event.preventDefault();return _vm.recipeSearch($event)}}},[_c('div',{staticClass:"input-group"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.searchTerm),expression:"searchTerm"}],staticClass:"form-control",attrs:{"type":"text","placeholder":"Search"},domProps:{"value":(_vm.searchTerm)},on:{"input":function($event){if($event.target.composing){ return; }_vm.searchTerm=$event.target.value}}}),_vm._v(" "),_vm._m(0)])])])]),_vm._v(" "),_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.recipes.length !== 0),expression:"recipes.length !== 0"}],staticClass:"filters"},[_c('button',{staticClass:"btn btn-secondary mx-1",attrs:{"type":"button"},on:{"click":_vm.resetFavoriteSources}},[_vm._v("Reset")]),_vm._v(" "),_vm._l((_vm.filterSources),function(source){return _c('button',{staticClass:"btn btn-outline-secondary mx-1",class:{ active: _vm.isFavorite(source) },attrs:{"type":"button","data-toggle":"button"},on:{"click":function($event){_vm.toggleIsFavorite(source)}}},[_vm._v(_vm._s(source))])})],2),_vm._v(" "),_c('div',{staticClass:"card-columns"},_vm._l((_vm.recipes),function(recipe){return _c('result-card',{directives:[{name:"show",rawName:"v-show",value:(_vm.favoriteSources.length === 0 || _vm.isFavorite(recipe.source)),expression:"favoriteSources.length === 0 || isFavorite(recipe.source)"}],attrs:{"name":recipe.label,"source":recipe.source,"url":recipe.url,"img":recipe.image}})}))])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"input-group-append"},[_c('button',{staticClass:"btn btn-outline-success",attrs:{"type":"submit"}},[_vm._v("Search")])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_c('log-in-box')],1)}
+__vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-d68900e8", __vue__options__)
+    hotAPI.createRecord("data-v-c7591798", __vue__options__)
   } else {
-    hotAPI.reload("data-v-d68900e8", __vue__options__)
+    hotAPI.reload("data-v-c7591798", __vue__options__)
   }
 })()}
-},{"./components/ResultCard.vue":5,"vue":2,"vue-hot-reload-api":1}],5:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".card {display: inline-block}")
+},{"./components/LogInBox.vue":4,"vue":2,"vue-hot-reload-api":1}],4:[function(require,module,exports){
 ;(function(){
-//
-//
-//
-//
 //
 //
 //
@@ -8455,37 +8322,34 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".card {d
 //
 
 module.exports = {
-    props: ['name','img','url','source']
-
+    
 }
 
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.name),expression:"name"}],staticClass:"card"},[_c('img',{staticClass:"card-img-top",attrs:{"src":_vm.img}}),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('h4',{staticClass:"card-title"},[_vm._v(_vm._s(_vm.name))]),_vm._v(" "),_c('small',{directives:[{name:"show",rawName:"v-show",value:(_vm.url),expression:"url"}]},[_vm._v("by "),_c('a',{staticClass:"card-link",attrs:{"href":_vm.url}},[_vm._v(_vm._s(_vm.source))])])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._v("\n    Hello!\n")])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
-  module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-85ad845e", __vue__options__)
+    hotAPI.createRecord("data-v-5f144706", __vue__options__)
   } else {
-    hotAPI.reload("data-v-85ad845e", __vue__options__)
+    hotAPI.reload("data-v-5f144706", __vue__options__)
   }
 })()}
-},{"vue":2,"vue-hot-reload-api":1,"vueify/lib/insert-css":3}],6:[function(require,module,exports){
-
+},{"vue":2,"vue-hot-reload-api":1}],5:[function(require,module,exports){
 var Vue = require('vue')
-var App = require('./App.vue')
+var App = require('./LogIn.vue')
 
-new Vue({ // eslint-disable-line no-new
+new Vue({
     el: '#app',
     render: (h) => h(App)
 })
-},{"./App.vue":4,"vue":2}],7:[function(require,module,exports){
+},{"./LogIn.vue":3,"vue":2}],6:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -8671,4 +8535,4 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}]},{},[6]);
+},{}]},{},[5]);
