@@ -22,8 +22,4 @@ module.exports = {
 </script>
 
 <style>
-.card {
-    width: 400px;
-    margin: auto;
-}
 </style>
