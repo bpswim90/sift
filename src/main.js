@@ -7,7 +7,7 @@ var App = require('./App.vue')
 Vue.use(VueRouter)
 
 var routes = [
-    { path: '/', component: LogIn },
+    { path: '', component: LogIn },
     { path: '/login', component: LogIn},
     { path: '/search', component: Search}
 ]
