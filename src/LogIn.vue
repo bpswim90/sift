@@ -11,7 +11,7 @@
             </form>
         </div>
         <div class="card-footer text-muted text-center">
-            <small>Not a member yet? Sign up!</small>
+            <small>Not a member yet? <router-link to="/signup">Sign up!</router-link></small>
         </div>
     </div>
 </div>
