@@ -2,6 +2,7 @@ var Vue = require('vue')
 var VueRouter = require('vue-router')
 var Firebase = require('firebase')
 var Search = require('./Search.vue')
+var SignUp = require('./SignUp.vue')
 var LogIn = require('./LogIn.vue')
 var App = require('./App.vue')
 
@@ -23,6 +24,10 @@ var routes = [
     { 
         path: '', 
         component: LogIn
+    },
+    {
+        path: '/signup',
+        component: SignUp
     },
     { 
         path: '/login', 
