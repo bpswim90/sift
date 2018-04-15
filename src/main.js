@@ -15,7 +15,7 @@ var config = {
     messagingSenderId: "710146700302"
 };
 
-firebase.initializeApp(config);
+Firebase.initializeApp(config);
 
 Vue.use(VueRouter)
 
