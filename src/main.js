@@ -1,8 +1,23 @@
 var Vue = require('vue')
 var VueRouter = require('vue-router')
+var Firebase = require('firebase')
 var Search = require('./Search.vue')
 var LogIn = require('./LogIn.vue')
 var App = require('./App.vue')
+
+// Firebase config
+var config = {
+    apiKey: "AIzaSyCGp5GMgDVWNCPtEXyzVzNcn-lskKiQaHs",
+    authDomain: "sift-f0539.firebaseapp.com",
+    databaseURL: "https://sift-f0539.firebaseio.com",
+    projectId: "sift-f0539",
+    storageBucket: "",
+    messagingSenderId: "710146700302"
+};
+
+firebase.initializeApp(config);
+
+
 
 Vue.use(VueRouter)
 
@@ -33,9 +48,9 @@ router.beforeEach((to, from, next) => {
     var requiresAuth = to.matched.some(record => record.meta.requiresAuth)
 
     if (requiresAuth) {
-        next('/login');
+        next('/login')
     } else {
-        next();
+        next()
     }
 })
 
