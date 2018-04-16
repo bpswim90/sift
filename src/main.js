@@ -23,7 +23,10 @@ Vue.use(VueRouter)
 var routes = [
     { 
         path: '', 
-        component: Search
+        component: Search,
+        meta: {
+            requiresAuth: true
+        }
     },
     {
         path: '/signup',
