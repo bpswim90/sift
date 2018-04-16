@@ -39,6 +39,7 @@
 
 <script>
 var ResultCard = require("./components/ResultCard.vue")
+var Firebase = require("firebase")
 
 module.exports = {
     components: {
@@ -114,6 +115,12 @@ module.exports = {
         resetFavoriteSources: function() {
             var app = this
             this.favoriteSources = []
+        },
+
+        logOut: function() {
+            Firebase.auth().signOut().then(() => {
+                this.$router.replace('/login')
+            })
         }
     }
 }
