@@ -12,6 +12,8 @@
                     </div>
                 </div>
             </form>
+
+            <button class="btn btn-outline-secondary" v-on:click="logOut">Log Out</button>
         </div>
     </nav>
 
