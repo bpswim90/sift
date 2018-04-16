@@ -23,7 +23,7 @@ Vue.use(VueRouter)
 var routes = [
     { 
         path: '', 
-        component: LogIn
+        component: Search
     },
     {
         path: '/signup',
