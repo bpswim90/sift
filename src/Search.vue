@@ -13,7 +13,15 @@
                 </div>
             </form>
 
-            <button class="btn btn-outline-secondary" v-on:click="logOut">Log Out</button>
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+                    <i class="fas fa-user-circle fa-lg mr-2"></i>
+                    <span id="username">bpswim90@gmail.com</span><!--Placeholder username-->
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <button class="dropdown-item" type="button" v-on:click="logOut">Log Out</button>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -127,4 +135,8 @@ module.exports = {
 </script>
 
 <style>
+.dropdown-menu-right {
+    right: 0;
+    left: auto;
+}
 </style>
