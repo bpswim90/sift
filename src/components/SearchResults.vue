@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="filters" v-show="recipes.length !== 0">
-            <button type="button" class="btn btn-secondary mx-1"
+            <button type="button" class="btn btn-secondary mr-1"
                 v-on:click="resetFavoriteSources">Reset</button>
             <button v-for="source in filterSources" type="button" class="btn btn-outline-secondary mx-1" data-toggle="button"
                 v-bind:class="{ active: isFavorite(source) }"
