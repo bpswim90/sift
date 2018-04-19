@@ -5,6 +5,7 @@ var Search = require('./Search.vue')
 var SignUp = require('./SignUp.vue')
 var LogIn = require('./LogIn.vue')
 var App = require('./App.vue')
+var SearchResults = require('./components/SearchResults.vue')
 
 // Firebase config
 var config = {
@@ -23,10 +24,7 @@ Vue.use(VueRouter)
 var routes = [
     { 
         path: '', 
-        component: Search,
-        meta: {
-            requiresAuth: true
-        }
+        redirect: '/search'
     },
     {
         path: '/signup',
@@ -41,7 +39,14 @@ var routes = [
         component: Search,
         meta: {
             requiresAuth: true
-        }
+        },
+        children: [
+            {
+                path: '',
+                component: SearchResults,
+                props: true
+            }
+        ]
     }
 ]
 

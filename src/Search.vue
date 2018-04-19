@@ -27,7 +27,7 @@
         </div>
     </nav>
 
-    <search-results v-bind:recipes="recipes"></search-results>
+    <router-view v-bind:recipes="recipes"></router-view>
   </div>
 </template>
 
