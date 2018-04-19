@@ -16,9 +16,11 @@
             <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown">
                     <i class="fas fa-user-circle fa-lg mr-2"></i>
-                    <span id="username">bpswim90@gmail.com</span><!--Placeholder username-->
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
+                    <span class="dropdown-item-text mx-4 text-muted">bpswim90@gmail.com</span><!--Placeholder username-->
+                    <div class="dropdown-divider"></div>
+                    <!--TODO: Add link to my profile-->
                     <button class="dropdown-item" type="button" v-on:click="logOut">Log Out</button>
                 </div>
             </div>
