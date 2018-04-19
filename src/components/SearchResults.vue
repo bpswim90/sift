@@ -30,7 +30,6 @@ module.exports = {
     },
     data: function() {
         return {
-            recipes: this.recipes,
             favoriteSources: []
         }
     },
