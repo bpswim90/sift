@@ -9,6 +9,11 @@
     .card-columns {
         column-count: 3;
     }
+
+    #profile {
+        width: 60%;
+        margin: auto;
+    }
 }
 @media (min-width: 992px) {
     .card-columns {

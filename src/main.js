@@ -6,6 +6,7 @@ var SignUp = require('./SignUp.vue')
 var LogIn = require('./LogIn.vue')
 var App = require('./App.vue')
 var SearchResults = require('./components/SearchResults.vue')
+var Profile = require('./Profile.vue')
 
 // Firebase config
 var config = {
@@ -43,8 +44,11 @@ var routes = [
         children: [
             {
                 path: '',
-                component: SearchResults,
-                props: true
+                component: SearchResults
+            },
+            {
+                path: 'profile',
+                component: Profile
             }
         ]
     }

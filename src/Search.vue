@@ -27,7 +27,7 @@
         </div>
     </nav>
 
-    <router-view v-bind:recipes="recipes"></router-view>
+    <router-view v-bind:recipes="recipes" v-bind:userEmail="userEmail"></router-view>
   </div>
 </template>
 
