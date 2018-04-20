@@ -18,7 +18,7 @@
                     <i class="fas fa-user-circle fa-lg mr-2"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <span class="dropdown-item-text mx-4 text-muted">bpswim90@gmail.com</span><!--Placeholder username-->
+                    <span class="dropdown-item-text mx-4 text-muted">{{ userEmail }}</span>
                     <div class="dropdown-divider"></div>
                     <!--TODO: Add link to my profile-->
                     <button class="dropdown-item" type="button" v-on:click="logOut">Log Out</button>
@@ -43,6 +43,15 @@ module.exports = {
         return {
             recipes: [],
             searchTerm: ""
+        }
+    },
+    computed: {
+        userEmail: function() {
+            var user = Firebase.auth().currentUser
+
+            if (user !== null) {
+                return user.email;
+            }
         }
     },
     methods: {
