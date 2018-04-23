@@ -58,6 +58,8 @@ module.exports = {
         //Search with no filters
         recipeSearch: function () {
             var app = this
+            this.$router.push('/search')
+
             app.recipes = []
             
             $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=50",
@@ -71,6 +73,8 @@ module.exports = {
         //For performing a new search with site filters selected
         filterSearch: function() {
             var app = this
+            this.$router.push('/search')
+            
             app.recipes = []
 
             $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=50",
