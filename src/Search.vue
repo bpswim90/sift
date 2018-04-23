@@ -19,8 +19,8 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                     <span class="dropdown-item-text mx-4 text-muted">{{ userEmail }}</span>
+                    <router-link class="dropdown-item" to="/search/profile">My Profile</router-link>
                     <div class="dropdown-divider"></div>
-                    <!--TODO: Add link to my profile-->
                     <button class="dropdown-item" type="button" v-on:click="logOut">Log Out</button>
                 </div>
             </div>
