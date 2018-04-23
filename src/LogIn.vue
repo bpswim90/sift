@@ -46,6 +46,6 @@ module.exports = {
 <style>
 #login {
     display: block;
-    width: 400px
+    max-width: 400px
 }
 </style>
