@@ -1,14 +1,16 @@
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <div id="profile">
-            <h1 class="my-4">{{userEmail}}</h1>
-            <h3>My favorite sources</h3>
-            <ul>
-                <li>Bon Appetit</li>
-                <li>Food 52</li>
-                <li>Smitten Kitchen</li>
-            </ul>
-            <h3>My Collection</h3>
+            <h1 id="profile-header" class="my-4"><i class="far fa-user-circle mr-2"></i>{{userEmail}}</h1>
+            <hr>
+            <h3>My Favorite Sources</h3>
+            <div class="my-4">
+                <button class="btn btn-outline-primary" disabled>Bon Appetit</button>
+                <button class="btn btn-outline-primary" disabled>Food52</button>
+                <button class="btn btn-outline-primary" disabled>Smitten Kitchen</button>
+            </div>
+            <hr>
+            <h3>My Collections</h3>
         </div>
     </div>
 </template>
@@ -20,4 +22,12 @@ module.exports = {
 </script>
 
 <style>
+#profile {
+    max-width: 800px;
+    margin: auto;
+}
+#profile-header {
+    white-space: nowrap;
+    overflow: hidden;
+}
 </style>
