@@ -74,8 +74,10 @@ router.beforeEach((to, from, next) => {
     }
 })
 
-new Vue({ // eslint-disable-line no-new
+Firebase.auth().onAuthStateChanged(function(user) {
+    new Vue({ // eslint-disable-line no-new
     el: '#app',
     render: (h) => h(App),
     router: router
+    })
 })
