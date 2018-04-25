@@ -74,10 +74,14 @@ router.beforeEach((to, from, next) => {
     }
 })
 
+//Vue instance is wrapped in onAuthStateChanged so it doesn't
+//execute until Firebase initialization ends, for proper functioning of navigation guards
 Firebase.auth().onAuthStateChanged(function(user) {
+
     new Vue({ // eslint-disable-line no-new
     el: '#app',
     render: (h) => h(App),
     router: router
     })
+
 })
