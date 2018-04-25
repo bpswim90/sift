@@ -5,9 +5,11 @@
             <hr>
             <h3>My Favorite Sources</h3>
             <div class="my-4">
-                <button class="btn btn-outline-primary" disabled>Bon Appetit</button>
-                <button class="btn btn-outline-primary" disabled>Food52</button>
-                <button class="btn btn-outline-primary" disabled>Smitten Kitchen</button>
+                <ul>
+                    <li v-for="favorite in userFavorites">
+                        {{favorite}}
+                    </li>
+                </ul>
             </div>
             <hr>
             <h3>My Collections</h3>
@@ -16,8 +18,10 @@
 </template>
 
 <script>
+var Firebase = require('firebase')
+
 module.exports = {
-    props: ['userEmail']
+    props: ['userEmail','userFavorites']
 }
 </script>
 

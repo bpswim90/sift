@@ -27,7 +27,7 @@
         </div>
     </nav>
 
-    <router-view v-bind:recipes="recipes" v-bind:userEmail="userEmail"></router-view>
+    <router-view v-bind:recipes="recipes" v-bind:userEmail="userEmail" v-bind:userFavorites="userFavorites"></router-view>
   </div>
 </template>
 
@@ -52,6 +52,23 @@ module.exports = {
             if (user !== null) {
                 return user.email;
             }
+        },
+        userFavorites: function() {
+            var user = Firebase.auth().currentUser
+
+            var userId = user.uid
+            var ref = Firebase.database().ref('/users/' + userId + '/favorites')
+
+            var theList = []
+            ref.on("value", function(data) {
+                //List must be cleared every time .on is run so it doesn't hold the old values
+                theList.splice(0,theList.length)
+                data.forEach(function(data) {
+                    console.log(data.val())
+                    theList.push(data.val())
+                })
+            })
+            return theList
         }
     },
     methods: {
@@ -74,7 +91,7 @@ module.exports = {
         filterSearch: function() {
             var app = this
             this.$router.push('/search')
-            
+
             app.recipes = []
 
             $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=50",
