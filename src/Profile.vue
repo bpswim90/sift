@@ -7,7 +7,7 @@
             <div class="my-4">
                 <ul>
                     <li v-for="favorite in userFavorites">
-                        {{favorite}}
+                        {{favorite.value}}
                     </li>
                 </ul>
             </div>

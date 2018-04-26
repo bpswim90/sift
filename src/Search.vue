@@ -66,8 +66,12 @@ module.exports = {
             //List must be cleared every time .on is run so it doesn't hold the old values
             theList.splice(0,theList.length)
             data.forEach(function(data) {
-                console.log(data.val())
-                theList.push(data.val())
+                console.log(data.key, data.val())
+                var item = {
+                    key: data.key,
+                    value: data.val()
+                    }
+                theList.push(item)
             })
         })
         this.userFavorites = theList
