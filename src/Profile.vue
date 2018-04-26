@@ -5,11 +5,13 @@
             <hr>
             <h3>My Favorite Sources</h3>
             <div class="my-4">
-                <ul>
-                    <li v-for="favorite in userFavorites">
-                        {{favorite.value}}
-                    </li>
-                </ul>
+                <div class="btn btn-outline-primary m-1 disabled"
+                    v-for="favorite in userFavorites">
+                    {{favorite.value}}
+                    <span id='deleteFavoriteIcon' v-on:click="removeUserFavorite(favorite.key)">
+                        <i class="far fa-times-circle ml-1"></i>
+                    </span>
+                </div>
             </div>
             <hr>
             <h3>My Collections</h3>
@@ -21,7 +23,16 @@
 var Firebase = require('firebase')
 
 module.exports = {
-    props: ['userEmail','userFavorites']
+    props: ['userEmail','userFavorites'],
+    methods: {
+        removeUserFavorite: function(favoriteId) {
+            var user = Firebase.auth().currentUser
+
+            var userId = user.uid
+            var ref = Firebase.database().ref('/users/' + userId + '/favorites/' + favoriteId)
+            ref.remove()
+        }
+    }
 }
 </script>
 
@@ -33,5 +44,8 @@ module.exports = {
 #profile-header {
     white-space: nowrap;
     overflow: hidden;
+}
+#deleteFavoriteIcon {
+    cursor: pointer
 }
 </style>
