@@ -42,7 +42,8 @@ module.exports = {
     data: function () {
         return {
             recipes: [],
-            searchTerm: ""
+            searchTerm: "",
+            userFavorites: []
         }
     },
     computed: {
@@ -52,24 +53,24 @@ module.exports = {
             if (user !== null) {
                 return user.email;
             }
-        },
-        userFavorites: function() {
-            var user = Firebase.auth().currentUser
-
-            var userId = user.uid
-            var ref = Firebase.database().ref('/users/' + userId + '/favorites')
-
-            var theList = []
-            ref.on("value", function(data) {
-                //List must be cleared every time .on is run so it doesn't hold the old values
-                theList.splice(0,theList.length)
-                data.forEach(function(data) {
-                    console.log(data.val())
-                    theList.push(data.val())
-                })
-            })
-            return theList
         }
+    },
+    created: function() {
+        var user = Firebase.auth().currentUser
+
+        var userId = user.uid
+        var ref = Firebase.database().ref('/users/' + userId + '/favorites')
+
+        var theList = []
+        ref.on("value", function(data) {
+            //List must be cleared every time .on is run so it doesn't hold the old values
+            theList.splice(0,theList.length)
+            data.forEach(function(data) {
+                console.log(data.val())
+                theList.push(data.val())
+            })
+        })
+        this.userFavorites = theList
     },
     methods: {
         //Search with no filters
