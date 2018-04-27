@@ -27,10 +27,23 @@ module.exports = {
         }
     },
     methods: {
-       addToUserFavorites: function() {
-           var app = this
+        addToUserFavorites: function() {
+            var app = this
 
-           Firebase.database().ref('users/' + this.userId).child('favorites').push(this.source)
+            var ref = Firebase.database().ref('/users/' + this.userId + '/favorites')
+
+            var theList = []
+            ref.on("value", function(data) {
+                //List must be cleared every time .on is run so it doesn't hold the old values
+                theList.splice(0,theList.length)
+                data.forEach(function(data) {
+                    theList.push(data.val())
+                })
+            })
+
+            if (theList.indexOf(this.source) === -1) {
+                Firebase.database().ref('users/' + this.userId).child('favorites').push(this.source)
+            }
        }
     }
 }
