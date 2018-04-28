@@ -53,6 +53,13 @@ module.exports = {
             if (user !== null) {
                 return user.email;
             }
+        },
+        userFavoritesArray: function() {
+            var favoritesArray = []
+            this.userFavoritesWithId.forEach(function(favorite) {
+                favoritesArray.push(favorite.value)
+            })
+            return favoritesArray
         }
     },
     created: function() {
@@ -66,7 +73,6 @@ module.exports = {
             //List must be cleared every time .on is run so it doesn't hold the old values
             theList.splice(0,theList.length)
             data.forEach(function(data) {
-                console.log(data.key, data.val())
                 var item = {
                     key: data.key,
                     value: data.val()
@@ -92,8 +98,8 @@ module.exports = {
                 }
             );
         },
-        //For performing a new search with site filters selected
-        filterSearch: function() {
+        //For performing a new search with your favorites
+        favoriteSearch: function() {
             var app = this
             this.$router.push('/search')
 
@@ -102,7 +108,7 @@ module.exports = {
             $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=50",
                 function(json) {
                     var filteredRecipes = json.hits.filter(function (result) {
-                        return (app.favoriteSources.indexOf(result.recipe.source) !== -1)
+                        return (app.userFavoritesArray.indexOf(result.recipe.source) !== -1)
                     })
                     filteredRecipes.forEach(function(result) {
                         app.recipes.push(result.recipe)
