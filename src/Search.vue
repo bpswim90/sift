@@ -8,7 +8,13 @@
                 <div class="input-group">
                     <input class="form-control" type="text" placeholder="Search" v-model="searchTerm">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-success" type="submit">Search</button>         
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-outline-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <button class="dropdown-item" type="button" v-on:click="recipeSearch">Search All</button>
+                            <button class="dropdown-item" type="button" v-on:click="favoriteSearch">Search My Favorites</button>
+                        </div>
                     </div>
                 </div>
             </form>
