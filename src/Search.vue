@@ -27,7 +27,7 @@
         </div>
     </nav>
 
-    <router-view v-bind:recipes="recipes" v-bind:userEmail="userEmail" v-bind:userFavorites="userFavorites"></router-view>
+    <router-view v-bind:recipes="recipes" v-bind:userEmail="userEmail" v-bind:userFavoritesWithId="userFavoritesWithId"></router-view>
   </div>
 </template>
 
@@ -43,7 +43,7 @@ module.exports = {
         return {
             recipes: [],
             searchTerm: "",
-            userFavorites: []
+            userFavoritesWithId: []
         }
     },
     computed: {
@@ -74,7 +74,7 @@ module.exports = {
                 theList.push(item)
             })
         })
-        this.userFavorites = theList
+        this.userFavoritesWithId = theList
     },
     methods: {
         //Search with no filters

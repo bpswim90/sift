@@ -6,7 +6,7 @@
             <h3>My Favorite Sources</h3>
             <div class="my-4">
                 <div class="btn btn-outline-primary m-1 disabled"
-                    v-for="favorite in userFavorites">
+                    v-for="favorite in userFavoritesWithId">
                     {{favorite.value}}
                     <span id='deleteFavoriteIcon' v-on:click="removeUserFavorite(favorite.key)">
                         <i class="far fa-times-circle ml-1"></i>
@@ -23,7 +23,7 @@
 var Firebase = require('firebase')
 
 module.exports = {
-    props: ['userEmail','userFavorites'],
+    props: ['userEmail','userFavoritesWithId'],
     methods: {
         removeUserFavorite: function(favoriteId) {
             var user = Firebase.auth().currentUser
