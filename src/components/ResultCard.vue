@@ -4,10 +4,9 @@
         <div class="card-body">
             <h4 class="card-title">{{name}}</h4>
             <small v-show="url">by <a v-bind:href="url" class="card-link">{{source}}</a></small>
-        </div>
-        <div class="card-footer">
-            <button type="button" class="btn btn-outline-danger" data-toggle="button"
-                v-on:click="addToUserFavorites()">Add Site to Favorites</button>
+            <span id='addUserFavorite' v-on:click="addToUserFavorites()">
+                <i class="far fa-heart fa-xs mx-1"></i>
+            </span>
         </div>
     </div>
 </template>
@@ -50,5 +49,9 @@ module.exports = {
 </script>
 
 <style>
-    .card {display: inline-block}
+.card {display: inline-block}
+
+#addUserFavorite {
+    cursor: pointer
+}
 </style>
