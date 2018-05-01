@@ -7,6 +7,7 @@ var LogIn = require('./LogIn.vue')
 var App = require('./App.vue')
 var SearchResults = require('./components/SearchResults.vue')
 var Profile = require('./Profile.vue')
+var store = require('./store/store')
 
 // Firebase config
 var config = {
@@ -80,6 +81,7 @@ Firebase.auth().onAuthStateChanged(function(user) {
 
     new Vue({ // eslint-disable-line no-new
     el: '#app',
+    store: store,
     render: (h) => h(App),
     router: router
     })
