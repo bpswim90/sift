@@ -54,11 +54,7 @@ module.exports = {
     },
     computed: {
         userEmail: function() {
-            var user = this.$store.getters.getUser
-
-            if (user !== null) {
-                return user.email;
-            }
+            return this.$store.getters.getUserEmail
         },
         userFavoritesArray: function() {
             var favoritesArray = []

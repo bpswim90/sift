@@ -11,6 +11,11 @@ var store = new Vuex.Store({
     getters: {
         getUser: state => {
             return state.user
+        },
+        getUserEmail: state => {
+            if (state.user !== null) {
+                return state.user.email
+            }
         }
     },
     mutations: {
