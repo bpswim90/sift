@@ -10,10 +10,14 @@ module.exports = {
     methods: {
         setUser: function() {
             this.$store.dispatch('setUser')
+        },
+        setUserFavorites: function() {
+            this.$store.dispatch('setUserFavoritesWithId')
         }
     },
     created() {
         this.setUser()
+        this.setUserFavorites()
     }
 }
 </script>

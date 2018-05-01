@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 var store = new Vuex.Store({
     state: {
-        user: null
+        user: null,
+        userFavoritesWithId: []
     },
     getters: {
         getUser: state => {
@@ -15,6 +16,11 @@ var store = new Vuex.Store({
         getUserEmail: state => {
             if (state.user !== null) {
                 return state.user.email
+            }
+        },
+        getUserId: state => {
+            if (state.user !== null) {
+                return state.user.uid
             }
         }
     },

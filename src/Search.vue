@@ -65,9 +65,7 @@ module.exports = {
         }
     },
     created: function() {
-        var user = Firebase.auth().currentUser
-
-        var userId = user.uid
+        var userId = this.$store.getters.getUserId
         var ref = Firebase.database().ref('/users/' + userId + '/favorites')
 
         var theList = []
