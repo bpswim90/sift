@@ -6,7 +6,15 @@
 
 <script>
 module.exports = {
-    name: 'app'
+    name: 'app',
+    methods: {
+        setUser: function() {
+            this.$store.dispatch('setUser')
+        }
+    },
+    created() {
+        this.setUser()
+    }
 }
 </script>
 

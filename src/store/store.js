@@ -17,6 +17,11 @@ var store = new Vuex.Store({
         setUser: state => {
             state.user = Firebase.auth().currentUser
         }
+    },
+    actions: {
+        setUser: context => {
+            context.commit('setUser')
+        }
     }
 })
 
