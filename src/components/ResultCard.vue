@@ -4,9 +4,13 @@
         <div class="card-body">
             <h4 class="card-title">{{name}}</h4>
             <small v-show="url">by <a v-bind:href="url" class="card-link">{{source}}</a></small>
-            <span id='addUserFavorite' v-on:click="addToUserFavorites()">
+            <span id='addUserFavorite' v-on:click="addToUserFavorites()" v-show="!isUserFavorite">
                 <i class="far fa-heart fa-xs mx-1"></i>
             </span>
+            <span v-show="isUserFavorite">
+                <i class="fas fa-heart fa-xs mx-1"></i>
+            </span>
+
         </div>
     </div>
 </template>
@@ -15,13 +19,22 @@
 var Firebase = require('firebase')
 
 module.exports = {
-    props: ['name','img','url','source'],
+    props: ['name','img','url','source','userFavoritesArray'],
     computed: {
         userId: function() {
             var user = Firebase.auth().currentUser
 
             if (user !== null) {
                 return user.uid
+            }
+        },
+
+        //Checks if the source is in the user's personal list of favorites
+        isUserFavorite: function() {
+            if (this.userFavoritesArray.indexOf(this.source) > -1) {
+                return true
+            } else {
+                return false
             }
         }
     },
@@ -50,6 +63,10 @@ module.exports = {
 
 <style>
 .card {display: inline-block}
+
+.fa-heart {
+    color: red
+}
 
 #addUserFavorite {
     cursor: pointer

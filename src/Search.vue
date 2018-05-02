@@ -33,7 +33,8 @@
         </div>
     </nav>
 
-    <router-view v-bind:recipes="recipes" v-bind:userEmail="userEmail" v-bind:userFavoritesWithId="userFavoritesWithId"></router-view>
+    <router-view v-bind:recipes="recipes" v-bind:userEmail="userEmail" v-bind:userFavoritesWithId="userFavoritesWithId"
+        v-bind:userFavoritesArray="userFavoritesArray"></router-view>
   </div>
 </template>
 
