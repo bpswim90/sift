@@ -6,8 +6,7 @@ Vue.use(Vuex)
 
 var store = new Vuex.Store({
     state: {
-        user: null,
-        userFavoritesWithId: []
+        user: null
     },
     getters: {
         getUser: state => {
