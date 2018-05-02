@@ -47,6 +47,10 @@ var store = new Vuex.Store({
             if (theList.indexOf(source) === -1) {
                 Firebase.database().ref('users/' + context.getters.getUserId).child('favorites').push(source)
             }
+        },
+        removeUserFavorite: (context, favoriteId) => {
+            var ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites/' + favoriteId)
+            ref.remove()
         }
     }
 })

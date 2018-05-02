@@ -26,9 +26,7 @@ module.exports = {
     props: ['userEmail','userFavoritesWithId'],
     methods: {
         removeUserFavorite: function(favoriteId) {
-            var userId = this.$store.getters.getUserId
-            var ref = Firebase.database().ref('/users/' + userId + '/favorites/' + favoriteId)
-            ref.remove()
+            this.$store.dispatch('removeUserFavorite',favoriteId)
         }
     }
 }
