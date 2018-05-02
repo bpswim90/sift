@@ -22,11 +22,7 @@ module.exports = {
     props: ['name','img','url','source','userFavoritesArray'],
     computed: {
         userId: function() {
-            var user = Firebase.auth().currentUser
-
-            if (user !== null) {
-                return user.uid
-            }
+            return this.$store.getters.getUserId
         },
 
         //Checks if the source is in the user's personal list of favorites
@@ -56,7 +52,7 @@ module.exports = {
             if (theList.indexOf(this.source) === -1) {
                 Firebase.database().ref('users/' + this.userId).child('favorites').push(this.source)
             }
-       }
+        }
     }
 }
 </script>
