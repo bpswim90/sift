@@ -5,6 +5,7 @@
   "main": "src/main.js",
   "dependencies": {
     "firebase": "^4.12.1",
+    "lodash": "^4.17.10",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vueify": "^9.4.1",
