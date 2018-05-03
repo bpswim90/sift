@@ -66,22 +66,7 @@ module.exports = {
         }
     },
     created: function() {
-        var userId = this.$store.getters.getUserId
-        var ref = Firebase.database().ref('/users/' + userId + '/favorites')
-
-        var theList = []
-        ref.on("value", function(data) {
-            //List must be cleared every time .on is run so it doesn't hold the old values
-            theList.splice(0,theList.length)
-            data.forEach(function(data) {
-                var item = {
-                    key: data.key,
-                    value: data.val()
-                    }
-                theList.push(item)
-            })
-        })
-        this.userFavoritesWithId = theList
+        this.userFavoritesWithId = this.$store.getters.getUserFavorites
     },
     methods: {
         //Search with no filters

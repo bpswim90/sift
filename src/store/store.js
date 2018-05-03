@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 var store = new Vuex.Store({
     state: {
-        user: null
+        user: null,
+        userFavorites: []
     },
     getters: {
         getUser: state => {
@@ -21,16 +22,40 @@ var store = new Vuex.Store({
             if (state.user !== null) {
                 return state.user.uid
             }
+        },
+        getUserFavorites: state => {
+            return state.userFavorites
         }
     },
     mutations: {
         setUser: state => {
             state.user = Firebase.auth().currentUser
+        },
+        setUserFavorites: (state, theUserFavorites) => {
+            state.userFavorites = theUserFavorites
         }
     },
     actions: {
         setUser: context => {
             context.commit('setUser')
+        },
+        setUserFavorites: context => {
+            var ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites')
+
+            var theList = []
+            ref.on("value", function(data) {
+                //List must be cleared every time .on is run so it doesn't hold the old values
+                theList.splice(0,theList.length)
+                data.forEach(function(data) {
+                    var item = {
+                        key: data.key,
+                        value: data.val()
+                        }
+                    theList.push(item)
+                })
+            })
+
+            context.commit('setUserFavorites',theList)
         },
         addToUserFavorites: (context, source) => {
             var ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites')
