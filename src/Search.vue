@@ -86,7 +86,7 @@ module.exports = {
             )
         }, 15000),
         //For performing a new search with your favorites
-        favoriteSearch: function() {
+        favoriteSearch: _.throttle(function() {
             var app = this
             this.$router.push('/search')
 
@@ -101,8 +101,8 @@ module.exports = {
                         app.recipes.push(result.recipe)
                     })
                 }
-            );
-        },
+            )
+        }, 15000),
 
         logOut: function() {
             Firebase.auth().signOut().then(() => {
