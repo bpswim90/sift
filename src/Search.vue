@@ -33,7 +33,8 @@
         </div>
     </nav>
 
-    <router-view v-bind:recipes="recipes" v-bind:userEmail="userEmail" v-bind:userFavoritesWithId="userFavoritesWithId"></router-view>
+    <router-view v-bind:recipes="recipes" v-bind:userEmail="userEmail" v-bind:userFavoritesWithId="userFavoritesWithId"
+        v-bind:userFavoritesArray="userFavoritesArray"></router-view>
   </div>
 </template>
 
@@ -54,11 +55,7 @@ module.exports = {
     },
     computed: {
         userEmail: function() {
-            var user = Firebase.auth().currentUser
-
-            if (user !== null) {
-                return user.email;
-            }
+            return this.$store.getters.getUserEmail
         },
         userFavoritesArray: function() {
             var favoritesArray = []
@@ -69,24 +66,7 @@ module.exports = {
         }
     },
     created: function() {
-        var user = Firebase.auth().currentUser
-
-        var userId = user.uid
-        var ref = Firebase.database().ref('/users/' + userId + '/favorites')
-
-        var theList = []
-        ref.on("value", function(data) {
-            //List must be cleared every time .on is run so it doesn't hold the old values
-            theList.splice(0,theList.length)
-            data.forEach(function(data) {
-                var item = {
-                    key: data.key,
-                    value: data.val()
-                    }
-                theList.push(item)
-            })
-        })
-        this.userFavoritesWithId = theList
+        this.userFavoritesWithId = this.$store.getters.getUserFavorites
     },
     methods: {
         //Search with no filters

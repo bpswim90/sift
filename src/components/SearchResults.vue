@@ -14,6 +14,7 @@
                 v-bind:source="recipe.source"
                 v-bind:url="recipe.url"
                 v-bind:img="recipe.image"
+                v-bind:userFavoritesArray="userFavoritesArray"
                 v-show="favoriteSources.length === 0 || isFavorite(recipe.source)">
             </result-card>
         </div>
@@ -24,7 +25,7 @@
 var ResultCard = require("./ResultCard.vue")
 
 module.exports = {
-    props: ['recipes'],
+    props: ['recipes', 'userFavoritesArray'],
     components: {
         'result-card': ResultCard
     },
@@ -46,6 +47,7 @@ module.exports = {
     },
     methods: {
 
+        //Checks if the source has been selected from the list of source filters
         isFavorite: function(source) {
             if (this.favoriteSources.indexOf(source) > -1) {
                 return true
