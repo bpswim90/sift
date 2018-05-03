@@ -41,6 +41,7 @@
 <script>
 var SearchResults = require("./components/SearchResults.vue")
 var Firebase = require("firebase")
+var _ = require("lodash")
 
 module.exports = {
     components: {
@@ -70,7 +71,7 @@ module.exports = {
     },
     methods: {
         //Search with no filters
-        recipeSearch: function () {
+        recipeSearch: _.throttle(function () {
             var app = this
             this.$router.push('/search')
 
@@ -82,8 +83,8 @@ module.exports = {
                         app.recipes.push(result.recipe)
                     })
                 }
-            );
-        },
+            )
+        }, 15000),
         //For performing a new search with your favorites
         favoriteSearch: function() {
             var app = this
