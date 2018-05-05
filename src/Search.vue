@@ -35,6 +35,14 @@
 
     <router-view v-bind:recipes="recipes" v-bind:userEmail="userEmail" v-bind:userFavoritesWithId="userFavoritesWithId"
         v-bind:userFavoritesArray="userFavoritesArray"></router-view>
+
+    <div class="navbar fixed-bottom navbar-light bg-light">
+        <div class="mx-auto">
+            <a href="http://developer.edamam.com">
+                <img src="src/assets/edamam_transparent.png"/>
+            </a>
+        </div>
+    </div>
   </div>
 </template>
 
