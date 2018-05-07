@@ -14,7 +14,22 @@
                 </div>
             </div>
             <hr>
-            <h3>My Collections</h3>
+            <h3 class="mb-4">My Collections</h3>
+
+            <div class="card-deck">
+                <div class="card">
+                    <div class="card-body pb-2">
+                        <h4 class="card-title">Make Again</h4>
+                    </div>
+                    <img class="card-img-bottom rounded" src="https://www.edamam.com/web-img/19e/19e5ea32ef3e12bdd4ba0abc04797ed0.jpg">
+                </div>
+                <div class="card">
+                    <div class="card-body pb-2">
+                        <h4 class="card-title">Salads</h4>
+                    </div>
+                    <img class="card-img-bottom rounded" src="https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg">
+                </div>
+            </div>
         </div>
     </div>
 </template>
