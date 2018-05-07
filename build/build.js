@@ -55293,6 +55293,30 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#profile
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var Firebase = require('firebase')
 
@@ -55310,7 +55334,7 @@ if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
 __vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"profile"}},[_c('h1',{staticClass:"my-4",attrs:{"id":"profile-header"}},[_c('i',{staticClass:"far fa-user-circle mr-2"}),_vm._v(_vm._s(_vm.userEmail))]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('h3',[_vm._v("My Favorite Sources")]),_vm._v(" "),_c('div',{staticClass:"my-4"},_vm._l((_vm.userFavoritesWithId),function(favorite){return _c('div',{staticClass:"btn btn-outline-primary m-1 disabled"},[_vm._v("\n                "+_vm._s(favorite.value)+"\n                "),_c('span',{attrs:{"id":"deleteFavoriteIcon"},on:{"click":function($event){_vm.removeUserFavorite(favorite.key)}}},[_c('i',{staticClass:"far fa-times-circle ml-1"})])])})),_vm._v(" "),_c('hr'),_vm._v(" "),_c('h3',{staticClass:"mb-4"},[_vm._v("My Collections")]),_vm._v(" "),_vm._m(0)])])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card-deck"},[_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-body pb-2"},[_c('h4',{staticClass:"card-title"},[_vm._v("Make Again")])]),_vm._v(" "),_c('img',{staticClass:"card-img-bottom rounded",attrs:{"src":"https://www.edamam.com/web-img/19e/19e5ea32ef3e12bdd4ba0abc04797ed0.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-body pb-2"},[_c('h4',{staticClass:"card-title"},[_vm._v("Salads")])]),_vm._v(" "),_c('img',{staticClass:"card-img-bottom rounded",attrs:{"src":"https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg"}})])])}]
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"card-deck"},[_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-body pb-2"},[_c('h4',{staticClass:"card-title"},[_vm._v("Make Again")])]),_vm._v(" "),_c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-left",attrs:{"src":"https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-1"},[_c('img',{staticClass:"img-fluid",attrs:{"src":"https://www.edamam.com/web-img/6c9/6c9960eaf107c71cffdaed4e57ff8bdf.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-right",attrs:{"src":"https://www.edamam.com/web-img/35f/35f25638bc22fd3de19b2bf3fcf75c27.jpg"}})])])])]),_vm._v(" "),_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-body pb-2"},[_c('h4',{staticClass:"card-title"},[_vm._v("Make Again")])]),_vm._v(" "),_c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-left",attrs:{"src":"https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-1"},[_c('img',{staticClass:"img-fluid",attrs:{"src":"https://www.edamam.com/web-img/6c9/6c9960eaf107c71cffdaed4e57ff8bdf.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-right",attrs:{"src":"https://www.edamam.com/web-img/35f/35f25638bc22fd3de19b2bf3fcf75c27.jpg"}})])])])])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
