@@ -14,7 +14,12 @@
                 </div>
             </div>
             <hr>
-            <h3 class="mb-4">My Collections</h3>
+            <div class="d-flex justify-content-between mb-3">
+                <h3 class="my-auto">My Collections</h3>
+                <button type="button" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Add New</button>
+            </div>
+
+            
 
             <!--Collection card-->
             <div class="row">
