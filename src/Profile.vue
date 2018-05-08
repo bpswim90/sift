@@ -16,7 +16,27 @@
             <hr>
             <div class="d-flex justify-content-between mb-3">
                 <h3 class="my-auto">My Collections</h3>
-                <button type="button" class="btn btn-primary"><i class="fas fa-plus mr-2"></i>Add New</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCollectionForm"><i class="fas fa-plus mr-2"></i>Add New</button>
+            </div>
+
+            <div class="modal fade" id="newCollectionForm" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Add new collection</h5>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span>&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Collection name
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             

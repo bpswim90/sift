@@ -55308,6 +55308,26 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#profile
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var Firebase = require('firebase')
 
@@ -55324,8 +55344,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"profile"}},[_c('h1',{staticClass:"my-4",attrs:{"id":"profile-header"}},[_c('i',{staticClass:"far fa-user-circle mr-2"}),_vm._v(_vm._s(_vm.userEmail))]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('h3',[_vm._v("My Favorite Sources")]),_vm._v(" "),_c('div',{staticClass:"my-4"},_vm._l((_vm.userFavoritesWithId),function(favorite){return _c('div',{staticClass:"btn btn-outline-primary m-1 disabled"},[_vm._v("\n                "+_vm._s(favorite.value)+"\n                "),_c('span',{attrs:{"id":"deleteFavoriteIcon"},on:{"click":function($event){_vm.removeUserFavorite(favorite.key)}}},[_c('i',{staticClass:"far fa-times-circle ml-1"})])])})),_vm._v(" "),_c('hr'),_vm._v(" "),_vm._m(0),_vm._v(" "),_vm._m(1)])])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"d-flex justify-content-between mb-3"},[_c('h3',{staticClass:"my-auto"},[_vm._v("My Collections")]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"button"}},[_c('i',{staticClass:"fas fa-plus mr-2"}),_vm._v("Add New")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-6"},[_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-body pb-2"},[_c('h4',{staticClass:"card-title"},[_vm._v("Make Again")])]),_vm._v(" "),_c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-left",attrs:{"src":"https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-1"},[_c('img',{staticClass:"img-fluid",attrs:{"src":"https://www.edamam.com/web-img/6c9/6c9960eaf107c71cffdaed4e57ff8bdf.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-right",attrs:{"src":"https://www.edamam.com/web-img/35f/35f25638bc22fd3de19b2bf3fcf75c27.jpg"}})])])])])])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"profile"}},[_c('h1',{staticClass:"my-4",attrs:{"id":"profile-header"}},[_c('i',{staticClass:"far fa-user-circle mr-2"}),_vm._v(_vm._s(_vm.userEmail))]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('h3',[_vm._v("My Favorite Sources")]),_vm._v(" "),_c('div',{staticClass:"my-4"},_vm._l((_vm.userFavoritesWithId),function(favorite){return _c('div',{staticClass:"btn btn-outline-primary m-1 disabled"},[_vm._v("\n                "+_vm._s(favorite.value)+"\n                "),_c('span',{attrs:{"id":"deleteFavoriteIcon"},on:{"click":function($event){_vm.removeUserFavorite(favorite.key)}}},[_c('i',{staticClass:"far fa-times-circle ml-1"})])])})),_vm._v(" "),_c('hr'),_vm._v(" "),_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_vm._m(2)])])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"d-flex justify-content-between mb-3"},[_c('h3',{staticClass:"my-auto"},[_vm._v("My Collections")]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"button","data-toggle":"modal","data-target":"#newCollectionForm"}},[_c('i',{staticClass:"fas fa-plus mr-2"}),_vm._v("Add New")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade",attrs:{"id":"newCollectionForm","tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog modal-dialog-centered",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('h5',{staticClass:"modal-title"},[_vm._v("Add new collection")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_c('span',[_vm._v("×")])])]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_vm._v("\n                        Collection name\n                    ")]),_vm._v(" "),_c('div',{staticClass:"modal-footer"},[_c('button',{staticClass:"btn btn-secondary",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("Cancel")]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"button"}},[_vm._v("Save")])])])])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-6"},[_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-body pb-2"},[_c('h4',{staticClass:"card-title"},[_vm._v("Make Again")])]),_vm._v(" "),_c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-left",attrs:{"src":"https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-1"},[_c('img',{staticClass:"img-fluid",attrs:{"src":"https://www.edamam.com/web-img/6c9/6c9960eaf107c71cffdaed4e57ff8bdf.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-right",attrs:{"src":"https://www.edamam.com/web-img/35f/35f25638bc22fd3de19b2bf3fcf75c27.jpg"}})])])])])])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
