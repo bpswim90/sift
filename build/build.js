@@ -55580,15 +55580,24 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 //
 
 module.exports = {
-    
+    data: function() {
+        return {
+            collectionName: ""
+        }
+    },
+    methods: {
+        addNewCollection: function() {
+            this.$store.dispatch('addNewCollection', this.collectionName)
+        }
+    }
 }
 
 })()
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade",attrs:{"id":"newCollectionForm","tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog modal-dialog-centered",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('h5',{staticClass:"modal-title"},[_vm._v("Add new collection")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_c('span',[_vm._v("×")])])]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"form-group row"},[_c('label',{staticClass:"col-2 col-form-label",attrs:{"for":"collectionName"}},[_vm._v("Name")]),_vm._v(" "),_c('div',{staticClass:"col-10"},[_c('input',{staticClass:"form-control",attrs:{"type":"text","id":"collectionName"}})])])]),_vm._v(" "),_c('div',{staticClass:"modal-footer"},[_c('button',{staticClass:"btn btn-secondary",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("Cancel")]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"button"}},[_vm._v("Save")])])])])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade",attrs:{"id":"newCollectionForm","tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog modal-dialog-centered",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"form-group row"},[_c('label',{staticClass:"col-2 col-form-label",attrs:{"for":"collectionName"}},[_vm._v("Name")]),_vm._v(" "),_c('div',{staticClass:"col-10"},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.collectionName),expression:"collectionName"}],staticClass:"form-control",attrs:{"type":"text","id":"collectionName"},domProps:{"value":(_vm.collectionName)},on:{"input":function($event){if($event.target.composing){ return; }_vm.collectionName=$event.target.value}}})])])]),_vm._v(" "),_c('div',{staticClass:"modal-footer"},[_c('button',{staticClass:"btn btn-secondary",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("Cancel")]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"button"},on:{"click":function($event){_vm.addNewCollection()}}},[_vm._v("Save")])])])])])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal-header"},[_c('h5',{staticClass:"modal-title"},[_vm._v("Add new collection")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_c('span',[_vm._v("×")])])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -55925,6 +55934,19 @@ var store = new Vuex.Store({
         removeUserFavorite: (context, favoriteId) => {
             var ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites/' + favoriteId)
             ref.remove()
+        },
+        addNewCollection: (context, collectionName) => {
+            var  collectionData = {
+                name: collectionName
+            }
+
+            var newCollectionKey = Firebase.database().ref().child('collections').push().key
+
+            var updates = {}
+            updates['/collections/' + newCollectionKey] = collectionData
+            updates['/users/' + context.getters.getUserId + '/collections/' + newCollectionKey] = collectionData
+
+            Firebase.database().ref().update(updates)
         }
     }
 })

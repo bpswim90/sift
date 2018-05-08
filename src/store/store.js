@@ -76,6 +76,19 @@ var store = new Vuex.Store({
         removeUserFavorite: (context, favoriteId) => {
             var ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites/' + favoriteId)
             ref.remove()
+        },
+        addNewCollection: (context, collectionName) => {
+            var  collectionData = {
+                name: collectionName
+            }
+
+            var newCollectionKey = Firebase.database().ref().child('collections').push().key
+
+            var updates = {}
+            updates['/collections/' + newCollectionKey] = collectionData
+            updates['/users/' + context.getters.getUserId + '/collections/' + newCollectionKey] = collectionData
+
+            Firebase.database().ref().update(updates)
         }
     }
 })
