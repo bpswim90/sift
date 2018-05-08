@@ -55308,30 +55308,14 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#profile
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
+var NewCollectionForm = require('./components/NewCollectionForm.vue')
 var Firebase = require('firebase')
 
 module.exports = {
+    components: {
+        'new-collection-form': NewCollectionForm
+    },
     props: ['userEmail','userFavoritesWithId'],
     methods: {
         removeUserFavorite: function(favoriteId) {
@@ -55344,8 +55328,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"profile"}},[_c('h1',{staticClass:"my-4",attrs:{"id":"profile-header"}},[_c('i',{staticClass:"far fa-user-circle mr-2"}),_vm._v(_vm._s(_vm.userEmail))]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('h3',[_vm._v("My Favorite Sources")]),_vm._v(" "),_c('div',{staticClass:"my-4"},_vm._l((_vm.userFavoritesWithId),function(favorite){return _c('div',{staticClass:"btn btn-outline-primary m-1 disabled"},[_vm._v("\n                "+_vm._s(favorite.value)+"\n                "),_c('span',{attrs:{"id":"deleteFavoriteIcon"},on:{"click":function($event){_vm.removeUserFavorite(favorite.key)}}},[_c('i',{staticClass:"far fa-times-circle ml-1"})])])})),_vm._v(" "),_c('hr'),_vm._v(" "),_vm._m(0),_vm._v(" "),_vm._m(1),_vm._v(" "),_vm._m(2)])])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"d-flex justify-content-between mb-3"},[_c('h3',{staticClass:"my-auto"},[_vm._v("My Collections")]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"button","data-toggle":"modal","data-target":"#newCollectionForm"}},[_c('i',{staticClass:"fas fa-plus mr-2"}),_vm._v("Add New")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade",attrs:{"id":"newCollectionForm","tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog modal-dialog-centered",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('h5',{staticClass:"modal-title"},[_vm._v("Add new collection")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_c('span',[_vm._v("×")])])]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_vm._v("\n                        Collection name\n                    ")]),_vm._v(" "),_c('div',{staticClass:"modal-footer"},[_c('button',{staticClass:"btn btn-secondary",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("Cancel")]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"button"}},[_vm._v("Save")])])])])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-6"},[_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-body pb-2"},[_c('h4',{staticClass:"card-title"},[_vm._v("Make Again")])]),_vm._v(" "),_c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-left",attrs:{"src":"https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-1"},[_c('img',{staticClass:"img-fluid",attrs:{"src":"https://www.edamam.com/web-img/6c9/6c9960eaf107c71cffdaed4e57ff8bdf.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-right",attrs:{"src":"https://www.edamam.com/web-img/35f/35f25638bc22fd3de19b2bf3fcf75c27.jpg"}})])])])])])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"profile"}},[_c('h1',{staticClass:"my-4",attrs:{"id":"profile-header"}},[_c('i',{staticClass:"far fa-user-circle mr-2"}),_vm._v(_vm._s(_vm.userEmail))]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('h3',[_vm._v("My Favorite Sources")]),_vm._v(" "),_c('div',{staticClass:"my-4"},_vm._l((_vm.userFavoritesWithId),function(favorite){return _c('div',{staticClass:"btn btn-outline-primary m-1 disabled"},[_vm._v("\n                "+_vm._s(favorite.value)+"\n                "),_c('span',{attrs:{"id":"deleteFavoriteIcon"},on:{"click":function($event){_vm.removeUserFavorite(favorite.key)}}},[_c('i',{staticClass:"far fa-times-circle ml-1"})])])})),_vm._v(" "),_c('hr'),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('new-collection-form'),_vm._v(" "),_vm._m(1)],1)])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"d-flex justify-content-between mb-3"},[_c('h3',{staticClass:"my-auto"},[_vm._v("My Collections")]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"button","data-toggle":"modal","data-target":"#newCollectionForm"}},[_c('i',{staticClass:"fas fa-plus mr-2"}),_vm._v("Add New")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-6"},[_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-body pb-2"},[_c('h4',{staticClass:"card-title"},[_vm._v("Make Again")])]),_vm._v(" "),_c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-left",attrs:{"src":"https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-1"},[_c('img',{staticClass:"img-fluid",attrs:{"src":"https://www.edamam.com/web-img/6c9/6c9960eaf107c71cffdaed4e57ff8bdf.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-right",attrs:{"src":"https://www.edamam.com/web-img/35f/35f25638bc22fd3de19b2bf3fcf75c27.jpg"}})])])])])])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -55357,7 +55341,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-66ccacd8", __vue__options__)
   }
 })()}
-},{"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],176:[function(require,module,exports){
+},{"./components/NewCollectionForm.vue":178,"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],176:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".dropdown-menu-right {\n    right: 0;\n    left: auto;\n}")
 ;(function(){
 //
@@ -55501,7 +55485,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-6956d7e6", __vue__options__)
   }
 })()}
-},{"./components/SearchResults.vue":179,"firebase":161,"lodash":164,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],177:[function(require,module,exports){
+},{"./components/SearchResults.vue":180,"firebase":161,"lodash":164,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],177:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#signup {\n    display: block;\n    max-width: 400px\n}")
 ;(function(){
 //
@@ -55566,6 +55550,56 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],178:[function(require,module,exports){
+;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = {
+    
+}
+
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _vm._m(0)}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal fade",attrs:{"id":"newCollectionForm","tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog modal-dialog-centered",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_c('div',{staticClass:"modal-header"},[_c('h5',{staticClass:"modal-title"},[_vm._v("Add new collection")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_c('span',[_vm._v("×")])])]),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_c('div',{staticClass:"form-group row"},[_c('label',{staticClass:"col-2 col-form-label",attrs:{"for":"collectionName"}},[_vm._v("Name")]),_vm._v(" "),_c('div',{staticClass:"col-10"},[_c('input',{staticClass:"form-control",attrs:{"type":"text","id":"collectionName"}})])])]),_vm._v(" "),_c('div',{staticClass:"modal-footer"},[_c('button',{staticClass:"btn btn-secondary",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("Cancel")]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"button"}},[_vm._v("Save")])])])])])}]
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1702d524", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-1702d524", __vue__options__)
+  }
+})()}
+},{"vue":170,"vue-hot-reload-api":168}],179:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".card {display: inline-block}\n\n.fa-heart {\n    color: red\n}\n\n#addUserFavorite {\n    cursor: pointer\n}")
 ;(function(){
 //
@@ -55628,7 +55662,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-85ad845e", __vue__options__)
   }
 })()}
-},{"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],179:[function(require,module,exports){
+},{"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],180:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -55721,7 +55755,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-4dee9c5a", __vue__options__)
   }
 })()}
-},{"./ResultCard.vue":178,"vue":170,"vue-hot-reload-api":168}],180:[function(require,module,exports){
+},{"./ResultCard.vue":179,"vue":170,"vue-hot-reload-api":168}],181:[function(require,module,exports){
 var Vue = require('vue')
 var VueRouter = require('vue-router')
 var Firebase = require('firebase')
@@ -55812,7 +55846,7 @@ Firebase.auth().onAuthStateChanged(function(user) {
 
 })
 
-},{"./App.vue":173,"./LogIn.vue":174,"./Profile.vue":175,"./Search.vue":176,"./SignUp.vue":177,"./components/SearchResults.vue":179,"./store/store":181,"firebase":161,"vue":170,"vue-router":169}],181:[function(require,module,exports){
+},{"./App.vue":173,"./LogIn.vue":174,"./Profile.vue":175,"./Search.vue":176,"./SignUp.vue":177,"./components/SearchResults.vue":180,"./store/store":182,"firebase":161,"vue":170,"vue-router":169}],182:[function(require,module,exports){
 var Vue = require('vue')
 var Vuex = require('vuex')
 var Firebase = require('firebase')
@@ -55896,4 +55930,4 @@ var store = new Vuex.Store({
 })
 
 module.exports = store
-},{"firebase":161,"vue":170,"vuex":172}]},{},[180]);
+},{"firebase":161,"vue":170,"vuex":172}]},{},[181]);
