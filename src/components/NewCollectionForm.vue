@@ -18,7 +18,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" v-on:click="addNewCollection()">Save</button>
+                    <button type="button" class="btn btn-primary" 
+                        v-bind:class="{ disabled: !collectionName }"
+                        v-on:click="addNewCollection()">Save</button>
                 </div>
             </div>
         </div>
@@ -34,9 +36,11 @@ module.exports = {
     },
     methods: {
         addNewCollection: function() {
-            this.$store.dispatch('addNewCollection', this.collectionName)
-            $('#newCollectionForm').modal('hide')
-            this.collectionName = ""
+            if (this.collectionName) {
+                this.$store.dispatch('addNewCollection', this.collectionName)
+                $('#newCollectionForm').modal('hide')
+                this.collectionName = ""
+            }
         }
     }
 }
