@@ -86,7 +86,7 @@ var store = new Vuex.Store({
 
             var updates = {}
             updates['/collections/' + newCollectionKey] = collectionData
-            updates['/users/' + context.getters.getUserId + '/collections/' + newCollectionKey] = collectionData
+            updates['/users/' + context.getters.getUserId + '/collections/' + newCollectionKey] = true
 
             Firebase.database().ref().update(updates)
         }
