@@ -36,6 +36,7 @@ module.exports = {
         addNewCollection: function() {
             this.$store.dispatch('addNewCollection', this.collectionName)
             $('#newCollectionForm').modal('hide')
+            this.collectionName = ""
         }
     }
 }
