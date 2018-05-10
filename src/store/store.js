@@ -7,7 +7,8 @@ Vue.use(Vuex)
 var store = new Vuex.Store({
     state: {
         user: null,
-        userFavorites: []
+        userFavorites: [],
+        userCollections: []
     },
     getters: {
         getUser: state => {
@@ -25,6 +26,9 @@ var store = new Vuex.Store({
         },
         getUserFavorites: state => {
             return state.userFavorites
+        },
+        getUserCollections: state => {
+            return state.userCollections
         }
     },
     mutations: {
@@ -33,12 +37,17 @@ var store = new Vuex.Store({
         },
         setUserFavorites: (state, theUserFavorites) => {
             state.userFavorites = theUserFavorites
+        },
+        setUserCollections: (state, theUserCollections) => {
+            state.userCollections = theUserCollections
         }
     },
     actions: {
         setUser: context => {
             context.commit('setUser')
         },
+
+        //userFavorites methods
         setUserFavorites: context => {
             var ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites')
 
@@ -77,6 +86,8 @@ var store = new Vuex.Store({
             var ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites/' + favoriteId)
             ref.remove()
         },
+
+        //userCollection methods  
         addNewCollection: (context, collectionName) => {
             var  collectionData = {
                 name: collectionName
@@ -85,10 +96,28 @@ var store = new Vuex.Store({
             var newCollectionKey = Firebase.database().ref().child('collections').push().key
 
             var updates = {}
-            updates['/collections/' + newCollectionKey] = collectionData
+            updates['/collections/' + context.getters.getUserId + '/' + newCollectionKey] = collectionData
             updates['/users/' + context.getters.getUserId + '/collections/' + newCollectionKey] = true
 
             Firebase.database().ref().update(updates)
+        },
+        setUserCollections: context => {
+            var ref = Firebase.database().ref('/collections/' + context.getters.getUserId)
+            
+            var theList = []
+            ref.on("value", function(data) {
+
+                theList.splice(0,theList.length)
+                data.forEach(function(data) {
+                    var item = {
+                        key: data.key,
+                        name: data.val().name
+                    }
+                    theList.push(item)
+                })
+            })
+
+            context.commit('setUserCollections',theList)
         }
     }
 })

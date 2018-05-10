@@ -44,6 +44,12 @@
                     </div>
                 </div>
 
+                <ul>
+                    <li v-for="collection in userCollections">
+                        {{collection.key}}: {{collection.name}}
+                    </li>
+                </ul>
+
             </div>
         </div>
     </div>
@@ -58,10 +64,18 @@ module.exports = {
         'new-collection-form': NewCollectionForm
     },
     props: ['userEmail','userFavoritesWithId'],
+    data: function() {
+        return {
+            userCollections: []
+        }
+    },
     methods: {
         removeUserFavorite: function(favoriteId) {
             this.$store.dispatch('removeUserFavorite',favoriteId)
         }
+    },
+    created: function() {
+        this.userCollections = this.$store.getters.getUserCollections
     }
 }
 </script>

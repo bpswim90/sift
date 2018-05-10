@@ -55165,12 +55165,16 @@ module.exports = {
         },
         setUserFavorites: function() {
             this.$store.dispatch('setUserFavorites')
+        },
+        setUserCollections: function() {
+            this.$store.dispatch('setUserCollections')
         }
     },
     //Set user and userFavorites in state
     created() {
         this.setUser()
         this.setUserFavorites()
+        this.setUserCollections()
     }
 }
 
@@ -55308,6 +55312,12 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#profile
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 var NewCollectionForm = require('./components/NewCollectionForm.vue')
 var Firebase = require('firebase')
@@ -55317,10 +55327,18 @@ module.exports = {
         'new-collection-form': NewCollectionForm
     },
     props: ['userEmail','userFavoritesWithId'],
+    data: function() {
+        return {
+            userCollections: []
+        }
+    },
     methods: {
         removeUserFavorite: function(favoriteId) {
             this.$store.dispatch('removeUserFavorite',favoriteId)
         }
+    },
+    created: function() {
+        this.userCollections = this.$store.getters.getUserCollections
     }
 }
 
@@ -55328,8 +55346,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"profile"}},[_c('h1',{staticClass:"my-4",attrs:{"id":"profile-header"}},[_c('i',{staticClass:"far fa-user-circle mr-2"}),_vm._v(_vm._s(_vm.userEmail))]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('h3',[_vm._v("My Favorite Sources")]),_vm._v(" "),_c('div',{staticClass:"my-4"},_vm._l((_vm.userFavoritesWithId),function(favorite){return _c('div',{staticClass:"btn btn-outline-primary m-1 disabled"},[_vm._v("\n                "+_vm._s(favorite.value)+"\n                "),_c('span',{attrs:{"id":"deleteFavoriteIcon"},on:{"click":function($event){_vm.removeUserFavorite(favorite.key)}}},[_c('i',{staticClass:"far fa-times-circle ml-1"})])])})),_vm._v(" "),_c('hr'),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('new-collection-form'),_vm._v(" "),_vm._m(1)],1)])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"d-flex justify-content-between mb-3"},[_c('h3',{staticClass:"my-auto"},[_vm._v("My Collections")]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"button","data-toggle":"modal","data-target":"#newCollectionForm"}},[_c('i',{staticClass:"fas fa-plus mr-2"}),_vm._v("Add New")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-6"},[_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-body pb-2"},[_c('h4',{staticClass:"card-title"},[_vm._v("Make Again")])]),_vm._v(" "),_c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-left",attrs:{"src":"https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-1"},[_c('img',{staticClass:"img-fluid",attrs:{"src":"https://www.edamam.com/web-img/6c9/6c9960eaf107c71cffdaed4e57ff8bdf.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-right",attrs:{"src":"https://www.edamam.com/web-img/35f/35f25638bc22fd3de19b2bf3fcf75c27.jpg"}})])])])])])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"profile"}},[_c('h1',{staticClass:"my-4",attrs:{"id":"profile-header"}},[_c('i',{staticClass:"far fa-user-circle mr-2"}),_vm._v(_vm._s(_vm.userEmail))]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('h3',[_vm._v("My Favorite Sources")]),_vm._v(" "),_c('div',{staticClass:"my-4"},_vm._l((_vm.userFavoritesWithId),function(favorite){return _c('div',{staticClass:"btn btn-outline-primary m-1 disabled"},[_vm._v("\n                "+_vm._s(favorite.value)+"\n                "),_c('span',{attrs:{"id":"deleteFavoriteIcon"},on:{"click":function($event){_vm.removeUserFavorite(favorite.key)}}},[_c('i',{staticClass:"far fa-times-circle ml-1"})])])})),_vm._v(" "),_c('hr'),_vm._v(" "),_vm._m(0),_vm._v(" "),_c('new-collection-form'),_vm._v(" "),_c('div',{staticClass:"row"},[_vm._m(1),_vm._v(" "),_c('ul',_vm._l((_vm.userCollections),function(collection){return _c('li',[_vm._v("\n                    "+_vm._s(collection.key)+": "+_vm._s(collection.name)+"\n                ")])}))])],1)])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"d-flex justify-content-between mb-3"},[_c('h3',{staticClass:"my-auto"},[_vm._v("My Collections")]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"type":"button","data-toggle":"modal","data-target":"#newCollectionForm"}},[_c('i',{staticClass:"fas fa-plus mr-2"}),_vm._v("Add New")])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"col-md-6"},[_c('div',{staticClass:"card"},[_c('div',{staticClass:"card-body pb-2"},[_c('h4',{staticClass:"card-title"},[_vm._v("Make Again")])]),_vm._v(" "),_c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-left",attrs:{"src":"https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-1"},[_c('img',{staticClass:"img-fluid",attrs:{"src":"https://www.edamam.com/web-img/6c9/6c9960eaf107c71cffdaed4e57ff8bdf.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-right",attrs:{"src":"https://www.edamam.com/web-img/35f/35f25638bc22fd3de19b2bf3fcf75c27.jpg"}})])])])])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -55871,7 +55889,8 @@ Vue.use(Vuex)
 var store = new Vuex.Store({
     state: {
         user: null,
-        userFavorites: []
+        userFavorites: [],
+        userCollections: []
     },
     getters: {
         getUser: state => {
@@ -55889,6 +55908,9 @@ var store = new Vuex.Store({
         },
         getUserFavorites: state => {
             return state.userFavorites
+        },
+        getUserCollections: state => {
+            return state.userCollections
         }
     },
     mutations: {
@@ -55897,12 +55919,17 @@ var store = new Vuex.Store({
         },
         setUserFavorites: (state, theUserFavorites) => {
             state.userFavorites = theUserFavorites
+        },
+        setUserCollections: (state, theUserCollections) => {
+            state.userCollections = theUserCollections
         }
     },
     actions: {
         setUser: context => {
             context.commit('setUser')
         },
+
+        //userFavorites methods
         setUserFavorites: context => {
             var ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites')
 
@@ -55941,6 +55968,8 @@ var store = new Vuex.Store({
             var ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites/' + favoriteId)
             ref.remove()
         },
+
+        //userCollection methods  
         addNewCollection: (context, collectionName) => {
             var  collectionData = {
                 name: collectionName
@@ -55949,10 +55978,29 @@ var store = new Vuex.Store({
             var newCollectionKey = Firebase.database().ref().child('collections').push().key
 
             var updates = {}
-            updates['/collections/' + newCollectionKey] = collectionData
+            updates['/collections/' + context.getters.getUserId + '/' + newCollectionKey] = collectionData
             updates['/users/' + context.getters.getUserId + '/collections/' + newCollectionKey] = true
 
             Firebase.database().ref().update(updates)
+        },
+        setUserCollections: context => {
+            //Todo: Test this method to see if it works.
+            var ref = Firebase.database().ref('/collections/' + context.getters.getUserId)
+            
+            var theList = []
+            ref.on("value", function(data) {
+
+                theList.splice(0,theList.length)
+                data.forEach(function(data) {
+                    var item = {
+                        key: data.key,
+                        name: data.val().name
+                    }
+                    theList.push(item)
+                })
+            })
+
+            context.commit('setUserCollections',theList)
         }
     }
 })
