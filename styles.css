@@ -20,6 +20,10 @@
     .card-columns {
         column-count: 4;
     }
+
+    #collection-column {
+        column-count: 3;
+    }
 }
 
 /* Padding required to make space for fixed nav */

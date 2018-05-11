@@ -55209,11 +55209,29 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#collect
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 var Firebase = require('firebase')
+var ResultCard = require('./components/ResultCard.vue')
 
 module.exports = {
     props: ['collectionId'],
+    data: function() {
+        return {
+            recipes: []
+        }
+    },
+    components: {
+        'result-card': ResultCard
+    },
     computed: {
         userId: function() {
             return this.$store.getters.getUserId
@@ -55227,7 +55245,27 @@ module.exports = {
             })
 
             return collectionName
+        },
+        userFavoritesArray: function() {
+            var favoritesArray = []
+            this.userFavoritesWithId.forEach(function(favorite) {
+                favoritesArray.push(favorite.value)
+            })
+            return favoritesArray
         }
+    },
+    created: function() {
+        var ref = Firebase.database().ref('/recipes/' + this.collectionId)
+
+        var recipesList = []
+        ref.once('value', function(data) {
+            data.forEach(function(data) {
+                recipesList.push(data.val())
+            })
+        })
+
+        this.recipes = recipesList
+        this.userFavoritesWithId = this.$store.getters.getUserFavorites
     }
 }
 
@@ -55235,7 +55273,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"collection"}},[_c('h1',{staticClass:"my-4"},[_vm._v("\n            "+_vm._s(_vm.collectionName)+"\n        ")]),_vm._v(" "),_c('hr'),_vm._v("\n        Collections will go here!\n    ")])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"collection"}},[_c('h1',{staticClass:"my-4"},[_vm._v("\n            "+_vm._s(_vm.collectionName)+"\n        ")]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('div',{staticClass:"card-columns",attrs:{"id":"collection-column"}},_vm._l((_vm.recipes),function(recipe){return _c('result-card',{attrs:{"name":recipe.name,"source":recipe.source,"url":recipe.url,"img":recipe.img,"userFavoritesArray":_vm.userFavoritesArray}})}))])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -55248,7 +55286,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-38c078fa", __vue__options__)
   }
 })()}
-},{"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],175:[function(require,module,exports){
+},{"./components/ResultCard.vue":180,"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],175:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#login {\n    display: block;\n    max-width: 400px\n}")
 ;(function(){
 //
@@ -56070,11 +56108,10 @@ var store = new Vuex.Store({
             context.commit('setUserCollections',theList)
         },
         addToCollection: (context, recipeObj) => {
-            var recipeId = recipeObj.uri
-
             var newRecipeKey = Firebase.database().ref().child('recipes').push().key
 
             var updates = {}
+            //TODO: Change hard coded collection ID to a variable received from parameter.
             updates['/recipes/-LCAstBWkmwbkE9bUg2k/' + newRecipeKey] = recipeObj
             updates['/collections/' + context.getters.getUserId + '/-LCAstBWkmwbkE9bUg2k/recipes/' + newRecipeKey] = true
 
