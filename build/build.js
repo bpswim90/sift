@@ -55702,6 +55702,8 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".card {d
 //
 //
 //
+//
+//
 
 var Firebase = require('firebase')
 
@@ -55724,6 +55726,16 @@ module.exports = {
     methods: {
         addToUserFavorites: function() {
             this.$store.dispatch('addToUserFavorites', this.source)
+        },
+        addToCollection: function() {
+            var recipeObj = {
+                name: this.name,
+                img: this.img,
+                url: this.url,
+                source: this.source
+            }
+
+            this.$store.dispatch('addToCollection', recipeObj)
         }
     }
 }
@@ -55732,7 +55744,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.name),expression:"name"}],staticClass:"card"},[_c('img',{staticClass:"card-img-top",attrs:{"src":_vm.img}}),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('h4',{staticClass:"card-title"},[_vm._v(_vm._s(_vm.name))]),_vm._v(" "),_c('small',{directives:[{name:"show",rawName:"v-show",value:(_vm.url),expression:"url"}]},[_vm._v("by "),_c('a',{staticClass:"card-link",attrs:{"href":_vm.url}},[_vm._v(_vm._s(_vm.source))])]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isUserFavorite),expression:"!isUserFavorite"}],attrs:{"id":"addUserFavorite"},on:{"click":function($event){_vm.addToUserFavorites()}}},[_c('i',{staticClass:"far fa-heart fa-xs mx-1"})]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.isUserFavorite),expression:"isUserFavorite"}]},[_c('i',{staticClass:"fas fa-heart fa-xs mx-1"})])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.name),expression:"name"}],staticClass:"card"},[_c('img',{staticClass:"card-img-top",attrs:{"src":_vm.img}}),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('h4',{staticClass:"card-title"},[_vm._v(_vm._s(_vm.name)+"\n            "),_c('button',{staticClass:"btn btn-primary",on:{"click":function($event){_vm.addToCollection()}}},[_vm._v("Save")])]),_vm._v(" "),_c('small',{directives:[{name:"show",rawName:"v-show",value:(_vm.url),expression:"url"}]},[_vm._v("by "),_c('a',{staticClass:"card-link",attrs:{"href":_vm.url}},[_vm._v(_vm._s(_vm.source))])]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isUserFavorite),expression:"!isUserFavorite"}],attrs:{"id":"addUserFavorite"},on:{"click":function($event){_vm.addToUserFavorites()}}},[_c('i',{staticClass:"far fa-heart fa-xs mx-1"})]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.isUserFavorite),expression:"isUserFavorite"}]},[_c('i',{staticClass:"fas fa-heart fa-xs mx-1"})])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -56056,6 +56068,17 @@ var store = new Vuex.Store({
             })
 
             context.commit('setUserCollections',theList)
+        },
+        addToCollection: (context, recipeObj) => {
+            var recipeId = recipeObj.uri
+
+            var newRecipeKey = Firebase.database().ref().child('recipes').push().key
+
+            var updates = {}
+            updates['/recipes/-LCAstBWkmwbkE9bUg2k/' + newRecipeKey] = recipeObj
+            updates['/collections/' + context.getters.getUserId + '/-LCAstBWkmwbkE9bUg2k/recipes/' + newRecipeKey] = true
+
+            Firebase.database().ref().update(updates)
         }
     }
 })

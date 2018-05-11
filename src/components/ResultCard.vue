@@ -2,7 +2,9 @@
     <div class="card" v-show="name">
         <img class="card-img-top" v-bind:src="img">
         <div class="card-body">
-            <h4 class="card-title">{{name}}</h4>
+            <h4 class="card-title">{{name}}
+                <button class="btn btn-primary" v-on:click="addToCollection()">Save</button>
+            </h4>
             <small v-show="url">by <a v-bind:href="url" class="card-link">{{source}}</a></small>
             <span id='addUserFavorite' v-on:click="addToUserFavorites()" v-show="!isUserFavorite">
                 <i class="far fa-heart fa-xs mx-1"></i>
@@ -37,6 +39,16 @@ module.exports = {
     methods: {
         addToUserFavorites: function() {
             this.$store.dispatch('addToUserFavorites', this.source)
+        },
+        addToCollection: function() {
+            var recipeObj = {
+                name: this.name,
+                img: this.img,
+                url: this.url,
+                source: this.source
+            }
+
+            this.$store.dispatch('addToCollection', recipeObj)
         }
     }
 }
