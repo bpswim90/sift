@@ -7,6 +7,7 @@ var LogIn = require('./LogIn.vue')
 var App = require('./App.vue')
 var SearchResults = require('./components/SearchResults.vue')
 var Profile = require('./Profile.vue')
+var Collection = require('./Collection.vue')
 var store = require('./store/store')
 
 // Firebase config
@@ -50,6 +51,11 @@ var routes = [
             {
                 path: 'profile',
                 component: Profile
+            },
+            {
+                path: 'collection/:collectionId',
+                component: Collection,
+                props: true
             }
         ]
     }

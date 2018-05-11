@@ -22,11 +22,13 @@
             <new-collection-form></new-collection-form>
 
             <!--Collection card-->
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card">
+            <div class="row mb-5">
+                <div class="col-md-6" v-for="collection in userCollections">
+                    <div class="card mb-4">
                         <div class="card-body pb-2">
-                            <h4 class="card-title">Make Again</h4>
+                            <router-link v-bind:to="'/search/collection/' + collection.key">
+                                <h4 class="card-title">{{collection.name}}</h4>
+                            </router-link>
                         </div>
                         <div class="container-fluid">
                             <div class="row">
@@ -43,12 +45,6 @@
                         </div>
                     </div>
                 </div>
-
-                <ul>
-                    <li v-for="collection in userCollections">
-                        {{collection.key}}: {{collection.name}}
-                    </li>
-                </ul>
 
             </div>
         </div>
