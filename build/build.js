@@ -55195,7 +55195,10 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"vue":170,"vue-hot-reload-api":168}],174:[function(require,module,exports){
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#collection {\n    max-width: 800px;\n    margin: auto;\n}")
 ;(function(){
+//
+//
 //
 //
 //
@@ -55232,19 +55235,20 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"collection"}},[_c('h1',[_vm._v("\n            "+_vm._s(_vm.collectionName)+"\n        ")])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"collection"}},[_c('h1',{staticClass:"my-4"},[_vm._v("\n            "+_vm._s(_vm.collectionName)+"\n        ")]),_vm._v(" "),_c('hr'),_vm._v("\n        Collections will go here!\n    ")])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
   module.hot.accept()
+  module.hot.dispose(__vueify_style_dispose__)
   if (!module.hot.data) {
     hotAPI.createRecord("data-v-38c078fa", __vue__options__)
   } else {
     hotAPI.reload("data-v-38c078fa", __vue__options__)
   }
 })()}
-},{"firebase":161,"vue":170,"vue-hot-reload-api":168}],175:[function(require,module,exports){
+},{"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],175:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#login {\n    display: block;\n    max-width: 400px\n}")
 ;(function(){
 //

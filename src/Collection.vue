@@ -1,9 +1,11 @@
 <template>
     <div class="container-fluid">
         <div id="collection">
-            <h1>
+            <h1 class="my-4">
                 {{collectionName}}
             </h1>
+            <hr>
+            Collections will go here!
         </div>
     </div>
 </template>
@@ -32,4 +34,8 @@ module.exports = {
 </script>
 
 <style>
+#collection {
+    max-width: 800px;
+    margin: auto;
+}
 </style>
