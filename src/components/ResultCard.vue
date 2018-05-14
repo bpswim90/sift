@@ -27,9 +27,11 @@
                         </button>
                     </div>
                     <div class="modal-body p-0 pb-1">
+                        To which collection would you like to add {{this.name}}?
                         <div class="list-group list-group-flush">
                             <button type="button" v-for="collection in userCollections"
-                                class="list-group-item list-group-item-action">
+                                class="list-group-item list-group-item-action"
+                                v-on:click="addToCollection(collection.key)">
                                 {{collection.name}}
                             </button>
                         </div>
@@ -67,15 +69,22 @@ module.exports = {
         addToUserFavorites: function() {
             this.$store.dispatch('addToUserFavorites', this.source)
         },
-        addToCollection: function() {
-            var recipeObj = {
-                name: this.name,
-                img: this.img,
-                url: this.url,
-                source: this.source
+        addToCollection: function(collectionId) {
+            //This method takes in a collection id, and passes the currently rendered recipe
+            //to the store to be added to the specified collection.
+
+            var collectionAndRecipe = {
+                collectionId: collectionId,
+                recipe: {
+                    name: this.name,
+                    img: this.img,
+                    url: this.url,
+                    source: this.source
+                }
             }
 
-            this.$store.dispatch('addToCollection', recipeObj)
+            this.$store.dispatch('addToCollection', collectionAndRecipe)
+            $('#addToCollection').modal('hide')
         }
     }
 }
