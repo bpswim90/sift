@@ -26,8 +26,13 @@
                             <span>&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        List of collections will go here!
+                    <div class="modal-body p-0 pb-1">
+                        <div class="list-group list-group-flush">
+                            <button type="button" v-for="collection in userCollections"
+                                class="list-group-item list-group-item-action">
+                                {{collection.name}}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,6 +57,10 @@ module.exports = {
             } else {
                 return false
             }
+        },
+
+        userCollections: function() {
+            return this.$store.getters.getUserCollections
         }
     },
     methods: {
