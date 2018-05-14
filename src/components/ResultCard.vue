@@ -1,18 +1,36 @@
 <template>
-    <div class="card" v-show="name">
-        <img class="card-img-top" v-bind:src="img">
-        <div class="card-body">
-            <h4 class="card-title">{{name}}
-                <button class="btn btn-primary" v-on:click="addToCollection()">Save</button>
-            </h4>
-            <small v-show="url">by <a v-bind:href="url" class="card-link">{{source}}</a></small>
-            <span id='addUserFavorite' v-on:click="addToUserFavorites()" v-show="!isUserFavorite">
-                <i class="far fa-heart fa-xs mx-1"></i>
-            </span>
-            <span v-show="isUserFavorite">
-                <i class="fas fa-heart fa-xs mx-1"></i>
-            </span>
+    <div>
+        <div class="card" v-show="name">
+            <img class="card-img-top" v-bind:src="img">
+            <div class="card-body">
+                <h4 class="card-title">{{name}}
+                    <!-- old button <button class="btn btn-primary" v-on:click="addToCollection()">Save</button>-->
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#addToCollection">Save</button>
+                </h4>
+                <small v-show="url">by <a v-bind:href="url" class="card-link">{{source}}</a></small>
+                <span id='addUserFavorite' v-on:click="addToUserFavorites()" v-show="!isUserFavorite">
+                    <i class="far fa-heart fa-xs mx-1"></i>
+                </span>
+                <span v-show="isUserFavorite">
+                    <i class="fas fa-heart fa-xs mx-1"></i>
+                </span>
 
+            </div>
+        </div>
+        <div class="modal fade" id="addToCollection" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Choose Collection</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        List of collections will go here!
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
