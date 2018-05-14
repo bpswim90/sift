@@ -26,7 +26,9 @@
                             <span>&times;</span>
                         </button>
                     </div>
-                    To which collection would you like to add {{name}}?
+                    <div class="modal-body">
+                        To which collection would you like to add {{name}}?
+                    </div>
                     <div class="modal-body p-0 pb-1">
                         <div class="list-group list-group-flush">
                             <button type="button" v-for="collection in userCollections"
