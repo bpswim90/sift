@@ -5,7 +5,7 @@
             <div class="card-body">
                 <h4 class="card-title">{{name}}
                     <!-- old button <button class="btn btn-primary" v-on:click="addToCollection()">Save</button>-->
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#addToCollection">Save</button>
+                    <button class="btn btn-primary" data-toggle="modal" :data-target="'#addToCollection'+index">Save</button>
                 </h4>
                 <small v-show="url">by <a v-bind:href="url" class="card-link">{{source}}</a></small>
                 <span id='addUserFavorite' v-on:click="addToUserFavorites()" v-show="!isUserFavorite">
@@ -17,7 +17,7 @@
 
             </div>
         </div>
-        <div class="modal fade" id="addToCollection" tabindex="-1" role="dialog">
+        <div class="modal fade" :id="'addToCollection'+index" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -26,8 +26,8 @@
                             <span>&times;</span>
                         </button>
                     </div>
+                    To which collection would you like to add {{name}}?
                     <div class="modal-body p-0 pb-1">
-                        To which collection would you like to add {{this.name}}?
                         <div class="list-group list-group-flush">
                             <button type="button" v-for="collection in userCollections"
                                 class="list-group-item list-group-item-action"
@@ -46,7 +46,7 @@
 var Firebase = require('firebase')
 
 module.exports = {
-    props: ['name','img','url','source','userFavoritesArray'],
+    props: ['name','img','url','source','index','userFavoritesArray'],
     computed: {
         userId: function() {
             return this.$store.getters.getUserId
@@ -83,8 +83,10 @@ module.exports = {
                 }
             }
 
+            var addToCollectionModal = '#addToCollection' + this.index
+
             this.$store.dispatch('addToCollection', collectionAndRecipe)
-            $('#addToCollection').modal('hide')
+            $(addToCollectionModal).modal('hide')
         }
     }
 }

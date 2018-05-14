@@ -9,11 +9,12 @@
         </div>
 
         <div class="card-columns">
-            <result-card v-for="recipe in recipes"
+            <result-card v-for="(recipe, index) in recipes"
                 v-bind:name="recipe.label"
                 v-bind:source="recipe.source"
                 v-bind:url="recipe.url"
                 v-bind:img="recipe.image"
+                v-bind:index="`${index}`"
                 v-bind:userFavoritesArray="userFavoritesArray"
                 v-show="favoriteSources.length === 0 || isFavorite(recipe.source)">
             </result-card>

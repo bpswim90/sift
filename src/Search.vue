@@ -89,6 +89,7 @@ module.exports = {
             
             $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=50",
                 function(json) {
+                    
                     json.hits.forEach(function (result) {
                         app.recipes.push(result.recipe)
                     })

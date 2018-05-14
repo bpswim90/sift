@@ -7,11 +7,12 @@
             <hr>
 
             <div class="card-columns" id="collection-column">
-                <result-card v-for="recipe in recipes"
+                <result-card v-for="(recipe, index) in recipes"
                     v-bind:name="recipe.name"
                     v-bind:source="recipe.source"
                     v-bind:url="recipe.url"
                     v-bind:img="recipe.img"
+                    v-bind:index="`${index}`"
                     v-bind:userFavoritesArray="userFavoritesArray">
                 </result-card>
             </div>
