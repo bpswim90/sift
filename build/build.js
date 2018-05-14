@@ -55227,7 +55227,8 @@ module.exports = {
     props: ['collectionId'],
     data: function() {
         return {
-            recipes: []
+            recipes: [],
+            userFavoritesWithId: []
         }
     },
     components: {
@@ -55723,8 +55724,14 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   }
 })()}
 },{"vue":170,"vue-hot-reload-api":168}],180:[function(require,module,exports){
-var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".card {display: inline-block}\n\n.fa-heart {\n    color: red\n}\n\n#addUserFavorite {\n    cursor: pointer\n}")
+var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".card {display: inline-block}\n\n/*Below fixes an issue with card-img-overlay\nmaking links not clickable*/\n.card-link {\n    position: relative\n}\n\n.fa-heart {\n    color: red\n}\n\n#addUserFavorite {\n    cursor: pointer;\n    position: relative\n}")
 ;(function(){
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -55824,7 +55831,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.name),expression:"name"}],staticClass:"card"},[_c('img',{staticClass:"card-img-top",attrs:{"src":_vm.img}}),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('h4',{staticClass:"card-title"},[_vm._v(_vm._s(_vm.name)+"\n                "),_vm._v(" "),_c('button',{staticClass:"btn btn-primary",attrs:{"data-toggle":"modal","data-target":'#addToCollection'+_vm.index}},[_vm._v("Save")])]),_vm._v(" "),_c('small',{directives:[{name:"show",rawName:"v-show",value:(_vm.url),expression:"url"}]},[_vm._v("by "),_c('a',{staticClass:"card-link",attrs:{"href":_vm.url}},[_vm._v(_vm._s(_vm.source))])]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isUserFavorite),expression:"!isUserFavorite"}],attrs:{"id":"addUserFavorite"},on:{"click":function($event){_vm.addToUserFavorites()}}},[_c('i',{staticClass:"far fa-heart fa-xs mx-1"})]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.isUserFavorite),expression:"isUserFavorite"}]},[_c('i',{staticClass:"fas fa-heart fa-xs mx-1"})])])]),_vm._v(" "),_c('div',{staticClass:"modal fade",attrs:{"id":'addToCollection'+_vm.index,"tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog modal-dialog-centered",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_vm._v("\n                    To which collection would you like to add "+_vm._s(_vm.name)+"?\n                ")]),_vm._v(" "),_c('div',{staticClass:"modal-body p-0 pb-1"},[_c('div',{staticClass:"list-group list-group-flush"},_vm._l((_vm.userCollections),function(collection){return _c('button',{staticClass:"list-group-item list-group-item-action",attrs:{"type":"button"},on:{"click":function($event){_vm.addToCollection(collection.key)}}},[_vm._v("\n                            "+_vm._s(collection.name)+"\n                        ")])}))])])])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.name),expression:"name"}],staticClass:"card"},[_c('img',{staticClass:"card-img-top",attrs:{"src":_vm.img}}),_vm._v(" "),_c('div',{staticClass:"card-img-overlay text-right"},[_c('button',{staticClass:"btn btn-primary",attrs:{"data-toggle":"modal","data-target":'#addToCollection'+_vm.index}},[_c('i',{staticClass:"fas fa-plus"})])]),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('div',{staticClass:"d-flex justify-content-between"},[_c('h4',{staticClass:"card-link my-auto"},[_c('a',{attrs:{"href":_vm.url}},[_vm._v(_vm._s(_vm.name))])])])]),_vm._v(" "),_c('div',{staticClass:"card-footer d-flex justify-content-between align-items-center"},[_c('small',{directives:[{name:"show",rawName:"v-show",value:(_vm.source),expression:"source"}]},[_vm._v("by "+_vm._s(_vm.source))]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isUserFavorite),expression:"!isUserFavorite"}],attrs:{"id":"addUserFavorite"},on:{"click":function($event){_vm.addToUserFavorites()}}},[_c('i',{staticClass:"far fa-heart mx-1"})]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.isUserFavorite),expression:"isUserFavorite"}]},[_c('i',{staticClass:"fas fa-heart mx-1"})])])]),_vm._v(" "),_c('div',{staticClass:"modal fade",attrs:{"id":'addToCollection'+_vm.index,"tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog modal-dialog-centered",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_vm._v("\n                    To which collection would you like to add "),_c('b',[_vm._v(_vm._s(_vm.name))]),_vm._v("?\n                ")]),_vm._v(" "),_c('div',{staticClass:"modal-body p-0 pb-1"},[_c('div',{staticClass:"list-group list-group-flush"},_vm._l((_vm.userCollections),function(collection){return _c('button',{staticClass:"list-group-item list-group-item-action",attrs:{"type":"button"},on:{"click":function($event){_vm.addToCollection(collection.key)}}},[_vm._v("\n                            "+_vm._s(collection.name)+"\n                        ")])}))])])])])])}
 __vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal-header"},[_c('h5',{staticClass:"modal-title"},[_vm._v("Choose Collection")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_c('span',[_vm._v("×")])])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)

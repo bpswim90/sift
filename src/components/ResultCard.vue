@@ -2,21 +2,27 @@
     <div>
         <div class="card" v-show="name">
             <img class="card-img-top" v-bind:src="img">
+            
+            <div class="card-img-overlay text-right">
+                <button class="btn btn-primary" data-toggle="modal" :data-target="'#addToCollection'+index"><i class="fas fa-plus"></i></button>
+            </div>
+            
             <div class="card-body">
-                <h4 class="card-title">{{name}}
-                    <!-- old button <button class="btn btn-primary" v-on:click="addToCollection()">Save</button>-->
-                    <button class="btn btn-primary" data-toggle="modal" :data-target="'#addToCollection'+index">Save</button>
-                </h4>
-                <small v-show="url">by <a v-bind:href="url" class="card-link">{{source}}</a></small>
+                <div class="d-flex justify-content-between">
+                    <h4 class="card-link my-auto"><a v-bind:href="url">{{name}}</a></h4>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <small v-show="source">by {{source}}</small>
                 <span id='addUserFavorite' v-on:click="addToUserFavorites()" v-show="!isUserFavorite">
-                    <i class="far fa-heart fa-xs mx-1"></i>
+                    <i class="far fa-heart mx-1"></i>
                 </span>
                 <span v-show="isUserFavorite">
-                    <i class="fas fa-heart fa-xs mx-1"></i>
+                    <i class="fas fa-heart mx-1"></i>
                 </span>
-
             </div>
         </div>
+
         <div class="modal fade" :id="'addToCollection'+index" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -27,7 +33,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        To which collection would you like to add {{name}}?
+                        To which collection would you like to add <b>{{name}}</b>?
                     </div>
                     <div class="modal-body p-0 pb-1">
                         <div class="list-group list-group-flush">
@@ -97,11 +103,18 @@ module.exports = {
 <style>
 .card {display: inline-block}
 
+/*Below fixes an issue with card-img-overlay
+making links not clickable*/
+.card-link {
+    position: relative
+}
+
 .fa-heart {
     color: red
 }
 
 #addUserFavorite {
-    cursor: pointer
+    cursor: pointer;
+    position: relative
 }
 </style>

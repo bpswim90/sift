@@ -28,7 +28,8 @@ module.exports = {
     props: ['collectionId'],
     data: function() {
         return {
-            recipes: []
+            recipes: [],
+            userFavoritesWithId: []
         }
     },
     components: {
