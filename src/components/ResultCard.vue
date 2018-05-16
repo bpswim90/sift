@@ -3,8 +3,9 @@
         <div class="card" v-show="name">
             <img class="card-img-top" v-bind:src="img">
             
-            <div class="card-img-overlay text-right">
-                <button class="btn btn-primary" data-toggle="modal" :data-target="'#addToCollection'+index"><i class="fas fa-plus"></i></button>
+            <div class="card-img-overlay">
+                <button class="btn btn-light" id="removeRecipe"><i class="fas fa-times"></i></button>
+                <button class="btn btn-primary float-right" data-toggle="modal" :data-target="'#addToCollection'+index"><i class="fas fa-plus"></i></button>
             </div>
             
             <div class="card-body">

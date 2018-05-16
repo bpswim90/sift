@@ -1,9 +1,12 @@
 <template>
     <div class="container-fluid">
         <div id="collection">
-            <h1 class="my-4">
-                {{collectionName}}
-            </h1>
+            <div class="d-flex justify-content-between my-2">
+                <h1 class="my-auto">
+                    {{collectionName}}
+                </h1>
+                <button type="button" class="btn btn-outline-primary my-auto">Edit</button>
+            </div>
             <hr>
 
             <div class="card-columns" id="collection-column">
