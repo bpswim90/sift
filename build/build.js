@@ -55222,6 +55222,8 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#collect
 //
 //
 //
+//
+//
 
 var Firebase = require('firebase')
 var ResultCard = require('./components/ResultCard.vue')
@@ -55263,9 +55265,12 @@ module.exports = {
         var ref = Firebase.database().ref('/recipes/' + this.collectionId)
 
         var recipesList = []
-        ref.once('value', function(data) {
+        ref.on('value', function(data) {
+            recipesList.splice(0,recipesList.length)
             data.forEach(function(data) {
-                recipesList.push(data.val())
+                var recipeObj = data.val()
+                recipeObj.recipeId = data.key
+                recipesList.push(recipeObj)
             })
         })
 
@@ -55278,7 +55283,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"collection"}},[_c('div',{staticClass:"d-flex justify-content-between my-2"},[_c('h1',{staticClass:"my-auto"},[_vm._v("\n                "+_vm._s(_vm.collectionName)+"\n            ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-outline-primary my-auto",attrs:{"type":"button"}},[_vm._v("Edit")])]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('div',{staticClass:"card-columns",attrs:{"id":"collection-column"}},_vm._l((_vm.recipes),function(recipe,index){return _c('result-card',{attrs:{"name":recipe.name,"source":recipe.source,"url":recipe.url,"img":recipe.img,"index":("" + index),"userFavoritesArray":_vm.userFavoritesArray}})}))])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"collection"}},[_c('div',{staticClass:"d-flex justify-content-between my-2"},[_c('h1',{staticClass:"my-auto"},[_vm._v("\n                "+_vm._s(_vm.collectionName)+"\n            ")]),_vm._v(" "),_c('button',{staticClass:"btn btn-outline-primary my-auto",attrs:{"type":"button"}},[_vm._v("Edit")])]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('div',{staticClass:"card-columns",attrs:{"id":"collection-column"}},_vm._l((_vm.recipes),function(recipe,index){return _c('result-card',{attrs:{"name":recipe.name,"source":recipe.source,"url":recipe.url,"img":recipe.img,"recipeId":recipe.recipeId,"currentCollectionId":_vm.collectionId,"index":("" + index),"userFavoritesArray":_vm.userFavoritesArray}})}))])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
@@ -55786,7 +55791,9 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".card {d
 var Firebase = require('firebase')
 
 module.exports = {
-    props: ['name','img','url','source','index','userFavoritesArray'],
+    // currentCollectionId refers to the collection the ResultCard is displayed in, if any
+    // Recipe Id refers to the id of the recipe the ResultCard is displaying, if any
+    props: ['name','img','url','source','recipeId','currentCollectionId','index','userFavoritesArray'],
     computed: {
         userId: function() {
             return this.$store.getters.getUserId
@@ -55827,6 +55834,14 @@ module.exports = {
 
             this.$store.dispatch('addToCollection', collectionAndRecipe)
             $(addToCollectionModal).modal('hide')
+        },
+        removeFromCollection: function() {
+            var collectionAndRecipe = {
+                collectionId: this.currentCollectionId,
+                recipeId: this.recipeId
+            }
+
+            this.$store.dispatch('removeFromCollection', collectionAndRecipe)
         }
     }
 }
@@ -55835,8 +55850,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.name),expression:"name"}],staticClass:"card"},[_c('img',{staticClass:"card-img-top",attrs:{"src":_vm.img}}),_vm._v(" "),_c('div',{staticClass:"card-img-overlay"},[_vm._m(0),_vm._v(" "),_c('button',{staticClass:"btn btn-primary float-right",attrs:{"data-toggle":"modal","data-target":'#addToCollection'+_vm.index}},[_c('i',{staticClass:"fas fa-plus"})])]),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('div',{staticClass:"d-flex justify-content-between"},[_c('h4',{staticClass:"card-link my-auto"},[_c('a',{attrs:{"href":_vm.url}},[_vm._v(_vm._s(_vm.name))])])])]),_vm._v(" "),_c('div',{staticClass:"card-footer d-flex justify-content-between align-items-center"},[_c('small',{directives:[{name:"show",rawName:"v-show",value:(_vm.source),expression:"source"}]},[_vm._v("by "+_vm._s(_vm.source))]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isUserFavorite),expression:"!isUserFavorite"}],attrs:{"id":"addUserFavorite"},on:{"click":function($event){_vm.addToUserFavorites()}}},[_c('i',{staticClass:"far fa-heart mx-1"})]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.isUserFavorite),expression:"isUserFavorite"}]},[_c('i',{staticClass:"fas fa-heart mx-1"})])])]),_vm._v(" "),_c('div',{staticClass:"modal fade",attrs:{"id":'addToCollection'+_vm.index,"tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog modal-dialog-centered",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_vm._m(1),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_vm._v("\n                    To which collection would you like to add "),_c('b',[_vm._v(_vm._s(_vm.name))]),_vm._v("?\n                ")]),_vm._v(" "),_c('div',{staticClass:"modal-body p-0 pb-1"},[_c('div',{staticClass:"list-group list-group-flush"},_vm._l((_vm.userCollections),function(collection){return _c('button',{staticClass:"list-group-item list-group-item-action",attrs:{"type":"button"},on:{"click":function($event){_vm.addToCollection(collection.key)}}},[_vm._v("\n                            "+_vm._s(collection.name)+"\n                        ")])}))])])])])])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"btn btn-light",attrs:{"id":"removeRecipe"}},[_c('i',{staticClass:"fas fa-times"})])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal-header"},[_c('h5',{staticClass:"modal-title"},[_vm._v("Choose Collection")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_c('span',[_vm._v("×")])])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_c('div',{directives:[{name:"show",rawName:"v-show",value:(_vm.name),expression:"name"}],staticClass:"card"},[_c('img',{staticClass:"card-img-top",attrs:{"src":_vm.img}}),_vm._v(" "),_c('div',{staticClass:"card-img-overlay"},[_c('button',{staticClass:"btn btn-light",attrs:{"id":"removeRecipe"},on:{"click":function($event){_vm.removeFromCollection()}}},[_c('i',{staticClass:"fas fa-times"})]),_vm._v(" "),_c('button',{staticClass:"btn btn-primary float-right",attrs:{"data-toggle":"modal","data-target":'#addToCollection'+_vm.index}},[_c('i',{staticClass:"fas fa-plus"})])]),_vm._v(" "),_c('div',{staticClass:"card-body"},[_c('div',{staticClass:"d-flex justify-content-between"},[_c('h4',{staticClass:"card-link my-auto"},[_c('a',{attrs:{"href":_vm.url}},[_vm._v(_vm._s(_vm.name))])])])]),_vm._v(" "),_c('div',{staticClass:"card-footer d-flex justify-content-between align-items-center"},[_c('small',{directives:[{name:"show",rawName:"v-show",value:(_vm.source),expression:"source"}]},[_vm._v("by "+_vm._s(_vm.source))]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(!_vm.isUserFavorite),expression:"!isUserFavorite"}],attrs:{"id":"addUserFavorite"},on:{"click":function($event){_vm.addToUserFavorites()}}},[_c('i',{staticClass:"far fa-heart mx-1"})]),_vm._v(" "),_c('span',{directives:[{name:"show",rawName:"v-show",value:(_vm.isUserFavorite),expression:"isUserFavorite"}]},[_c('i',{staticClass:"fas fa-heart mx-1"})])])]),_vm._v(" "),_c('div',{staticClass:"modal fade",attrs:{"id":'addToCollection'+_vm.index,"tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog modal-dialog-centered",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_vm._m(0),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_vm._v("\n                    To which collection would you like to add "),_c('b',[_vm._v(_vm._s(_vm.name))]),_vm._v("?\n                ")]),_vm._v(" "),_c('div',{staticClass:"modal-body p-0 pb-1"},[_c('div',{staticClass:"list-group list-group-flush"},_vm._l((_vm.userCollections),function(collection){return _c('button',{staticClass:"list-group-item list-group-item-action",attrs:{"type":"button"},on:{"click":function($event){_vm.addToCollection(collection.key)}}},[_vm._v("\n                            "+_vm._s(collection.name)+"\n                        ")])}))])])])])])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal-header"},[_c('h5',{staticClass:"modal-title"},[_vm._v("Choose Collection")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_c('span',[_vm._v("×")])])])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -56161,6 +56176,7 @@ var store = new Vuex.Store({
 
             context.commit('setUserCollections',theList)
         },
+        //Adds recipe to collection
         addToCollection: (context, collectionAndRecipe) => {
             var newRecipeKey = Firebase.database().ref().child('recipes').push().key
 
@@ -56171,6 +56187,17 @@ var store = new Vuex.Store({
             //TODO: Change hard coded collection ID to a variable received from parameter.
             updates['/recipes/' + collectionId + '/' + newRecipeKey] = recipe
             updates['/collections/' + context.getters.getUserId + '/' + collectionId + '/recipes/' + newRecipeKey] = true
+
+            Firebase.database().ref().update(updates)
+        },
+        //Removes recipe from collection
+        removeFromCollection: (context, collectionAndRecipe) => {
+            var collectionId = collectionAndRecipe.collectionId
+            var recipeId = collectionAndRecipe.recipeId
+
+            var updates = {}
+            updates['/recipes/' + collectionId + '/' + recipeId] = null
+            updates['/collections/' + context.getters.getUserId + '/' + collectionId + '/recipes/' + recipeId] = null
 
             Firebase.database().ref().update(updates)
         }

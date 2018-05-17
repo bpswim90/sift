@@ -119,6 +119,7 @@ var store = new Vuex.Store({
 
             context.commit('setUserCollections',theList)
         },
+        //Adds recipe to collection
         addToCollection: (context, collectionAndRecipe) => {
             var newRecipeKey = Firebase.database().ref().child('recipes').push().key
 
@@ -129,6 +130,17 @@ var store = new Vuex.Store({
             //TODO: Change hard coded collection ID to a variable received from parameter.
             updates['/recipes/' + collectionId + '/' + newRecipeKey] = recipe
             updates['/collections/' + context.getters.getUserId + '/' + collectionId + '/recipes/' + newRecipeKey] = true
+
+            Firebase.database().ref().update(updates)
+        },
+        //Removes recipe from collection
+        removeFromCollection: (context, collectionAndRecipe) => {
+            var collectionId = collectionAndRecipe.collectionId
+            var recipeId = collectionAndRecipe.recipeId
+
+            var updates = {}
+            updates['/recipes/' + collectionId + '/' + recipeId] = null
+            updates['/collections/' + context.getters.getUserId + '/' + collectionId + '/recipes/' + recipeId] = null
 
             Firebase.database().ref().update(updates)
         }

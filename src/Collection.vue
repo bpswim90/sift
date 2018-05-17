@@ -15,6 +15,8 @@
                     v-bind:source="recipe.source"
                     v-bind:url="recipe.url"
                     v-bind:img="recipe.img"
+                    v-bind:recipeId="recipe.recipeId"
+                    v-bind:currentCollectionId="collectionId"
                     v-bind:index="`${index}`"
                     v-bind:userFavoritesArray="userFavoritesArray">
                 </result-card>
@@ -64,9 +66,12 @@ module.exports = {
         var ref = Firebase.database().ref('/recipes/' + this.collectionId)
 
         var recipesList = []
-        ref.once('value', function(data) {
+        ref.on('value', function(data) {
+            recipesList.splice(0,recipesList.length)
             data.forEach(function(data) {
-                recipesList.push(data.val())
+                var recipeObj = data.val()
+                recipeObj.recipeId = data.key
+                recipesList.push(recipeObj)
             })
         })
 
