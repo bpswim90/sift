@@ -3,7 +3,7 @@
         <div id="collection">
             <div class="d-flex justify-content-between my-2">
                 <h1 class="my-auto">
-                    {{collectionName}}
+                    {{collectionName()}}
                 </h1>
                 <button type="button" class="btn btn-outline-primary my-auto">Edit</button>
             </div>
@@ -44,6 +44,15 @@ module.exports = {
         userId: function() {
             return this.$store.getters.getUserId
         },
+        userFavoritesArray: function() {
+            var favoritesArray = []
+            this.userFavoritesWithId.forEach(function(favorite) {
+                favoritesArray.push(favorite.value)
+            })
+            return favoritesArray
+        }
+    },
+    methods: {
         collectionName: function() {
             var ref = Firebase.database().ref('collections/' + this.userId + '/' + this.collectionId + '/name')
             var collectionName = ""
@@ -53,13 +62,6 @@ module.exports = {
             })
 
             return collectionName
-        },
-        userFavoritesArray: function() {
-            var favoritesArray = []
-            this.userFavoritesWithId.forEach(function(favorite) {
-                favoritesArray.push(favorite.value)
-            })
-            return favoritesArray
         }
     },
     created: function() {
