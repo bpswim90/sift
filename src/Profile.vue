@@ -14,10 +14,10 @@
                 </div>
             </div>
             <hr>
-            <div class="d-flex justify-content-between mb-3">
-                <h3 class="my-auto">My Collections</h3>
-                <button type="button" class="btn btn-outline-primary" v-bind:class="{ active: editMode }" v-on:click="toggleEditMode">Edit</button>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCollectionForm"><i class="fas fa-plus mr-2"></i>Add New</button>
+            <div class="d-flex mb-3">
+                <h3 class="my-auto mr-auto">My Collections</h3>
+                <button type="button" class="btn btn-outline-primary mr-2 my-auto" v-bind:class="{ active: editMode }" v-on:click="toggleEditMode">Edit</button>
+                <button type="button" class="btn btn-primary my-auto" data-toggle="modal" data-target="#newCollectionForm"><i class="fas fa-plus mr-2"></i>Add New</button>
             </div>
 
             <new-collection-form></new-collection-form>
@@ -26,10 +26,13 @@
             <div class="row mb-5">
                 <div class="col-md-6" v-for="collection in userCollections">
                     <div class="card mb-4">
-                        <div class="card-body pb-2">
-                            <router-link v-bind:to="'/search/collection/' + collection.key">
-                                <h4 class="card-title">{{collection.name}}</h4>
-                            </router-link>
+                        <div class="card-body d-flex justify-content-between">
+                            <div class="my-auto">
+                                <router-link v-bind:to="'/search/collection/' + collection.key">
+                                    <h4 class="my-auto">{{collection.name}}</h4>
+                                </router-link>
+                            </div>
+                            <button class="btn btn-secondary my-auto" id="removeCollection" v-if="editMode"><i class="fas fa-times"></i></button>
                         </div>
                         <div class="container-fluid">
                             <div class="row">
