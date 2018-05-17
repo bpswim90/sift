@@ -4,7 +4,9 @@
             <img class="card-img-top" v-bind:src="img">
             
             <div class="card-img-overlay">
-                <button class="btn btn-light" id="removeRecipe" v-on:click="removeFromCollection()"><i class="fas fa-times"></i></button>
+                <button class="btn btn-light" id="removeRecipe" 
+                    v-if="editMode"
+                    v-on:click="removeFromCollection()"><i class="fas fa-times"></i></button>
                 <button class="btn btn-primary float-right" data-toggle="modal" :data-target="'#addToCollection'+index"><i class="fas fa-plus"></i></button>
             </div>
             
@@ -57,7 +59,7 @@ var Firebase = require('firebase')
 module.exports = {
     // currentCollectionId refers to the collection the ResultCard is displayed in, if any
     // Recipe Id refers to the id of the recipe the ResultCard is displaying, if any
-    props: ['name','img','url','source','recipeId','currentCollectionId','index','userFavoritesArray'],
+    props: ['name','img','url','source','recipeId','currentCollectionId','index','userFavoritesArray', 'editMode'],
     computed: {
         userId: function() {
             return this.$store.getters.getUserId

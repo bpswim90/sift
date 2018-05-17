@@ -5,7 +5,9 @@
                 <h1 class="my-auto">
                     {{collectionName()}}
                 </h1>
-                <button type="button" class="btn btn-outline-primary my-auto">Edit</button>
+                <button type="button" class="btn btn-outline-primary my-auto"
+                    v-bind:class="{ active: editMode }"
+                    v-on:click="toggleEditMode">Edit</button>
             </div>
             <hr>
 
@@ -18,7 +20,8 @@
                     v-bind:recipeId="recipe.recipeId"
                     v-bind:currentCollectionId="collectionId"
                     v-bind:index="`${index}`"
-                    v-bind:userFavoritesArray="userFavoritesArray">
+                    v-bind:userFavoritesArray="userFavoritesArray"
+                    v-bind:editMode="editMode">
                 </result-card>
             </div>
         </div>
@@ -34,7 +37,8 @@ module.exports = {
     data: function() {
         return {
             recipes: [],
-            userFavoritesWithId: []
+            userFavoritesWithId: [],
+            editMode: false
         }
     },
     components: {
@@ -62,6 +66,13 @@ module.exports = {
             })
 
             return collectionName
+        },
+        toggleEditMode: function() {
+            if (this.editMode === false) {
+                this.editMode = true
+            } else {
+                this.editMode = false
+            }
         }
     },
     created: function() {
