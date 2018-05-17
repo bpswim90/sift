@@ -16,6 +16,7 @@
             <hr>
             <div class="d-flex justify-content-between mb-3">
                 <h3 class="my-auto">My Collections</h3>
+                <button type="button" class="btn btn-outline-primary" v-bind:class="{ active: editMode }" v-on:click="toggleEditMode">Edit</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCollectionForm"><i class="fas fa-plus mr-2"></i>Add New</button>
             </div>
 
@@ -62,12 +63,20 @@ module.exports = {
     props: ['userEmail','userFavoritesWithId'],
     data: function() {
         return {
-            userCollections: []
+            userCollections: [],
+            editMode: false
         }
     },
     methods: {
         removeUserFavorite: function(favoriteId) {
             this.$store.dispatch('removeUserFavorite',favoriteId)
+        },
+        toggleEditMode: function() {
+            if (this.editMode === false) {
+                this.editMode = true
+            } else {
+                this.editMode = false
+            }
         }
     },
     created: function() {
