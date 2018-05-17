@@ -4,9 +4,8 @@
             <img class="card-img-top" v-bind:src="img">
             
             <div class="card-img-overlay">
-                <button class="btn btn-light" id="removeRecipe" 
-                    v-if="editMode"
-                    v-on:click="removeFromCollection()"><i class="fas fa-times"></i></button>
+                <button class="btn btn-light" id="removeRecipe" data-toggle="modal" :data-target="'#removeFromCollection'+index"
+                    v-if="editMode"><i class="fas fa-times"></i></button>
                 <button class="btn btn-primary float-right" data-toggle="modal" :data-target="'#addToCollection'+index"><i class="fas fa-plus"></i></button>
             </div>
             
@@ -26,6 +25,7 @@
             </div>
         </div>
 
+        <!--Modal for adding recipe to a new/other collection-->
         <div class="modal fade" :id="'addToCollection'+index" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -46,6 +46,28 @@
                                 {{collection.name}}
                             </button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal for removing a recipe from a collection-->
+        <div class="modal fade" :id="'removeFromCollection'+index" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Remove recipe?</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to remove this recipe? This can't be undone.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger"
+                            v-on:click="removeFromCollection()">Remove</button>
                     </div>
                 </div>
             </div>
@@ -108,6 +130,9 @@ module.exports = {
             }
 
             this.$store.dispatch('removeFromCollection', collectionAndRecipe)
+
+            var removeFromCollectionModal = '#removeFromCollection' + this.index
+            $(removeFromCollectionModal).modal('hide')
         }
     }
 }
