@@ -32,7 +32,11 @@
                                     <h4 class="my-auto">{{collection.name}}</h4>
                                 </router-link>
                             </div>
-                            <button class="btn btn-secondary my-auto" id="removeCollection" v-if="editMode"><i class="fas fa-times"></i></button>
+                            <button class="btn btn-secondary my-auto" id="removeCollection" 
+                                v-if="editMode"
+                                v-on:click="removeCollection(collection.key)">
+                                <i class="fas fa-times"></i>
+                            </button>
                         </div>
                         <div class="container-fluid">
                             <div class="row">
@@ -80,6 +84,9 @@ module.exports = {
             } else {
                 this.editMode = false
             }
+        },
+        removeCollection: function(collectionId) {
+            this.$store.dispatch('removeCollection',collectionId)
         }
     },
     created: function() {
