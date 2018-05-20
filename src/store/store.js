@@ -101,6 +101,13 @@ var store = new Vuex.Store({
 
             Firebase.database().ref().update(updates)
         },
+        removeCollection: (context, collectionId) => {
+            var updates = {}
+            updates['/collections/' + context.getters.getUserId + '/' + collectionId] = null
+            updates['/users/' + context.getters.getUserId + '/collections/' + collectionId] = null
+
+            Firebase.database().ref().update(updates)
+        },
         setUserCollections: context => {
             var ref = Firebase.database().ref('/collections/' + context.getters.getUserId)
             
