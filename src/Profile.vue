@@ -23,8 +23,9 @@
             <new-collection-form></new-collection-form>
 
             <!--Collection card-->
+            <!--TODO: move to its own component-->
             <div class="row mb-5">
-                <div class="col-md-6" v-for="collection in userCollections">
+                <div class="col-md-6" v-for="(collection, index) in userCollections">
                     <div class="card mb-4">
                         <div class="card-body d-flex justify-content-between">
                             <div class="my-auto">
@@ -32,9 +33,7 @@
                                     <h4 class="my-auto">{{collection.name}}</h4>
                                 </router-link>
                             </div>
-                            <button class="btn btn-secondary my-auto" id="removeCollection" 
-                                v-if="editMode"
-                                v-on:click="removeCollection(collection.key)">
+                            <button class="btn btn-secondary my-auto" v-if="editMode" data-toggle="modal" :data-target="'#removeCollection'+index">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
@@ -52,6 +51,28 @@
                             </div>
                         </div>
                     </div>
+                    <!--Modal for confirming removeCollection-->
+                    <div class="modal fade" :id="'removeCollection'+index" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Remove collection?</h5>
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span>&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to remove this collection? This will delete all recipes in the collection and can't be undone.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-danger"
+                                        v-on:click="removeCollection(collection.key, index)">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -85,8 +106,11 @@ module.exports = {
                 this.editMode = false
             }
         },
-        removeCollection: function(collectionId) {
+        removeCollection: function(collectionId, index) {
             this.$store.dispatch('removeCollection',collectionId)
+
+            var removeCollectionModal = '#removeCollection' + index
+            $(removeCollectionModal).modal('hide')
         }
     },
     created: function() {

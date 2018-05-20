@@ -105,6 +105,7 @@ var store = new Vuex.Store({
             var updates = {}
             updates['/collections/' + context.getters.getUserId + '/' + collectionId] = null
             updates['/users/' + context.getters.getUserId + '/collections/' + collectionId] = null
+            updates['/recipes/' + collectionId] = null
 
             Firebase.database().ref().update(updates)
         },
