@@ -55309,7 +55309,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-38c078fa", __vue__options__)
   }
 })()}
-},{"./components/ResultCard.vue":180,"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],175:[function(require,module,exports){
+},{"./components/ResultCard.vue":181,"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],175:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#login {\n    display: block;\n    max-width: 400px\n}")
 ;(function(){
 //
@@ -55412,59 +55412,15 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#profile
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 var NewCollectionForm = require('./components/NewCollectionForm.vue')
+var CollectionCard = require('./components/CollectionCard.vue')
 var Firebase = require('firebase')
 
 module.exports = {
     components: {
-        'new-collection-form': NewCollectionForm
+        'new-collection-form': NewCollectionForm,
+        'collection-card': CollectionCard
     },
     props: ['userEmail','userFavoritesWithId'],
     data: function() {
@@ -55483,12 +55439,6 @@ module.exports = {
             } else {
                 this.editMode = false
             }
-        },
-        removeCollection: function(collectionId, index) {
-            this.$store.dispatch('removeCollection',collectionId)
-
-            var removeCollectionModal = '#removeCollection' + index
-            $(removeCollectionModal).modal('hide')
         }
     },
     created: function() {
@@ -55500,8 +55450,8 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"profile"}},[_c('h1',{staticClass:"my-4",attrs:{"id":"profile-header"}},[_c('i',{staticClass:"far fa-user-circle mr-2"}),_vm._v(_vm._s(_vm.userEmail))]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('h3',[_vm._v("My Favorite Sources")]),_vm._v(" "),_c('div',{staticClass:"my-4"},_vm._l((_vm.userFavoritesWithId),function(favorite){return _c('div',{staticClass:"btn btn-outline-primary m-1 disabled"},[_vm._v("\n                "+_vm._s(favorite.value)+"\n                "),_c('span',{attrs:{"id":"deleteFavoriteIcon"},on:{"click":function($event){_vm.removeUserFavorite(favorite.key)}}},[_c('i',{staticClass:"far fa-times-circle ml-1"})])])})),_vm._v(" "),_c('hr'),_vm._v(" "),_c('div',{staticClass:"d-flex mb-3"},[_c('h3',{staticClass:"my-auto mr-auto"},[_vm._v("My Collections")]),_vm._v(" "),_c('button',{staticClass:"btn btn-outline-primary mr-2 my-auto",class:{ active: _vm.editMode },attrs:{"type":"button"},on:{"click":_vm.toggleEditMode}},[_vm._v("Edit")]),_vm._v(" "),_vm._m(0)]),_vm._v(" "),_c('new-collection-form'),_vm._v(" "),_c('div',{staticClass:"row mb-5"},_vm._l((_vm.userCollections),function(collection,index){return _c('div',{staticClass:"col-md-6"},[_c('div',{staticClass:"card mb-4"},[_c('div',{staticClass:"card-body d-flex justify-content-between"},[_c('div',{staticClass:"my-auto"},[_c('router-link',{attrs:{"to":'/search/collection/' + collection.key}},[_c('h4',{staticClass:"my-auto"},[_vm._v(_vm._s(collection.name))])])],1),_vm._v(" "),(_vm.editMode)?_c('button',{staticClass:"btn btn-secondary my-auto",attrs:{"data-toggle":"modal","data-target":'#removeCollection'+index}},[_c('i',{staticClass:"fas fa-times"})]):_vm._e()]),_vm._v(" "),_vm._m(1,true)]),_vm._v(" "),_c('div',{staticClass:"modal fade",attrs:{"id":'removeCollection'+index,"tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog modal-dialog-centered",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_vm._m(2,true),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_vm._v("\n                                Are you sure you want to remove this collection? This will delete all recipes in the collection and can't be undone.\n                            ")]),_vm._v(" "),_c('div',{staticClass:"modal-footer"},[_c('button',{staticClass:"btn btn-secondary",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("Cancel")]),_vm._v(" "),_c('button',{staticClass:"btn btn-danger",attrs:{"type":"button"},on:{"click":function($event){_vm.removeCollection(collection.key, index)}}},[_vm._v("Remove")])])])])])])}))],1)])}
-__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"btn btn-primary my-auto",attrs:{"type":"button","data-toggle":"modal","data-target":"#newCollectionForm"}},[_c('i',{staticClass:"fas fa-plus mr-2"}),_vm._v("Add New")])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-left",attrs:{"src":"https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-1"},[_c('img',{staticClass:"img-fluid",attrs:{"src":"https://www.edamam.com/web-img/6c9/6c9960eaf107c71cffdaed4e57ff8bdf.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-right",attrs:{"src":"https://www.edamam.com/web-img/35f/35f25638bc22fd3de19b2bf3fcf75c27.jpg"}})])])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal-header"},[_c('h5',{staticClass:"modal-title"},[_vm._v("Remove collection?")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_c('span',[_vm._v("×")])])])}]
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{attrs:{"id":"profile"}},[_c('h1',{staticClass:"my-4",attrs:{"id":"profile-header"}},[_c('i',{staticClass:"far fa-user-circle mr-2"}),_vm._v(_vm._s(_vm.userEmail))]),_vm._v(" "),_c('hr'),_vm._v(" "),_c('h3',[_vm._v("My Favorite Sources")]),_vm._v(" "),_c('div',{staticClass:"my-4"},_vm._l((_vm.userFavoritesWithId),function(favorite){return _c('div',{staticClass:"btn btn-outline-primary m-1 disabled"},[_vm._v("\n                "+_vm._s(favorite.value)+"\n                "),_c('span',{attrs:{"id":"deleteFavoriteIcon"},on:{"click":function($event){_vm.removeUserFavorite(favorite.key)}}},[_c('i',{staticClass:"far fa-times-circle ml-1"})])])})),_vm._v(" "),_c('hr'),_vm._v(" "),_c('div',{staticClass:"d-flex mb-3"},[_c('h3',{staticClass:"my-auto mr-auto"},[_vm._v("My Collections")]),_vm._v(" "),_c('button',{staticClass:"btn btn-outline-primary mr-2 my-auto",class:{ active: _vm.editMode },attrs:{"type":"button"},on:{"click":_vm.toggleEditMode}},[_vm._v("Edit")]),_vm._v(" "),_vm._m(0)]),_vm._v(" "),_c('new-collection-form'),_vm._v(" "),_c('div',{staticClass:"row mb-5"},_vm._l((_vm.userCollections),function(collection,index){return _c('collection-card',{attrs:{"collection":collection,"index":("" + index),"editMode":_vm.editMode}})}))],1)])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"btn btn-primary my-auto",attrs:{"type":"button","data-toggle":"modal","data-target":"#newCollectionForm"}},[_c('i',{staticClass:"fas fa-plus mr-2"}),_vm._v("Add New")])}]
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
   if (!hotAPI.compatible) return
@@ -55513,7 +55463,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-66ccacd8", __vue__options__)
   }
 })()}
-},{"./components/NewCollectionForm.vue":179,"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],177:[function(require,module,exports){
+},{"./components/CollectionCard.vue":179,"./components/NewCollectionForm.vue":180,"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],177:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".dropdown-menu-right {\n    right: 0;\n    left: auto;\n}")
 ;(function(){
 //
@@ -55658,7 +55608,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-6956d7e6", __vue__options__)
   }
 })()}
-},{"./components/SearchResults.vue":181,"firebase":161,"lodash":164,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],178:[function(require,module,exports){
+},{"./components/SearchResults.vue":182,"firebase":161,"lodash":164,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],178:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#signup {\n    display: block;\n    max-width: 400px\n}")
 ;(function(){
 //
@@ -55753,6 +55703,88 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+module.exports = {
+    props: ['collection','index','editMode'],
+    methods: {
+        removeCollection: function(collectionId, index) {
+            this.$store.dispatch('removeCollection',collectionId)
+
+            var removeCollectionModal = '#removeCollection' + index
+            $(removeCollectionModal).modal('hide')
+        }
+    }
+}
+
+})()
+if (module.exports.__esModule) module.exports = module.exports.default
+var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
+if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"col-md-6"},[_c('div',{staticClass:"card mb-4"},[_c('div',{staticClass:"card-body d-flex justify-content-between"},[_c('div',{staticClass:"my-auto"},[_c('router-link',{attrs:{"to":'/search/collection/' + _vm.collection.key}},[_c('h4',{staticClass:"my-auto"},[_vm._v(_vm._s(_vm.collection.name))])])],1),_vm._v(" "),(_vm.editMode)?_c('button',{staticClass:"btn btn-secondary my-auto",attrs:{"data-toggle":"modal","data-target":'#removeCollection'+_vm.index}},[_c('i',{staticClass:"fas fa-times"})]):_vm._e()]),_vm._v(" "),_vm._m(0)]),_vm._v(" "),_c('div',{staticClass:"modal fade",attrs:{"id":'removeCollection'+_vm.index,"tabindex":"-1","role":"dialog"}},[_c('div',{staticClass:"modal-dialog modal-dialog-centered",attrs:{"role":"document"}},[_c('div',{staticClass:"modal-content"},[_vm._m(1),_vm._v(" "),_c('div',{staticClass:"modal-body"},[_vm._v("\n                    Are you sure you want to remove this collection? This will delete all recipes in the collection and can't be undone.\n                ")]),_vm._v(" "),_c('div',{staticClass:"modal-footer"},[_c('button',{staticClass:"btn btn-secondary",attrs:{"type":"button","data-dismiss":"modal"}},[_vm._v("Cancel")]),_vm._v(" "),_c('button',{staticClass:"btn btn-danger",attrs:{"type":"button"},on:{"click":function($event){_vm.removeCollection(_vm.collection.key, _vm.index)}}},[_vm._v("Remove")])])])])])])}
+__vue__options__.staticRenderFns = [function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container-fluid"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-left",attrs:{"src":"https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-1"},[_c('img',{staticClass:"img-fluid",attrs:{"src":"https://www.edamam.com/web-img/6c9/6c9960eaf107c71cffdaed4e57ff8bdf.jpg"}})]),_vm._v(" "),_c('div',{staticClass:"col px-0"},[_c('img',{staticClass:"img-fluid rounded-right",attrs:{"src":"https://www.edamam.com/web-img/35f/35f25638bc22fd3de19b2bf3fcf75c27.jpg"}})])])])},function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"modal-header"},[_c('h5',{staticClass:"modal-title"},[_vm._v("Remove collection?")]),_vm._v(" "),_c('button',{staticClass:"close",attrs:{"type":"button","data-dismiss":"modal"}},[_c('span',[_vm._v("×")])])])}]
+if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), true)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2c4e855c", __vue__options__)
+  } else {
+    hotAPI.reload("data-v-2c4e855c", __vue__options__)
+  }
+})()}
+},{"vue":170,"vue-hot-reload-api":168}],180:[function(require,module,exports){
+;(function(){
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 module.exports = {
     data: function() {
@@ -55787,7 +55819,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-1702d524", __vue__options__)
   }
 })()}
-},{"vue":170,"vue-hot-reload-api":168}],180:[function(require,module,exports){
+},{"vue":170,"vue-hot-reload-api":168}],181:[function(require,module,exports){
 var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert(".card {display: inline-block}\n\n/*Below fixes an issue with card-img-overlay\nmaking links not clickable*/\n.card-link {\n    position: relative\n}\n\n.fa-heart {\n    color: red\n}\n\n#addUserFavorite {\n    cursor: pointer;\n    position: relative\n}")
 ;(function(){
 //
@@ -55946,7 +55978,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-85ad845e", __vue__options__)
   }
 })()}
-},{"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],181:[function(require,module,exports){
+},{"firebase":161,"vue":170,"vue-hot-reload-api":168,"vueify/lib/insert-css":171}],182:[function(require,module,exports){
 ;(function(){
 //
 //
@@ -56040,7 +56072,7 @@ if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
     hotAPI.reload("data-v-4dee9c5a", __vue__options__)
   }
 })()}
-},{"./ResultCard.vue":180,"vue":170,"vue-hot-reload-api":168}],182:[function(require,module,exports){
+},{"./ResultCard.vue":181,"vue":170,"vue-hot-reload-api":168}],183:[function(require,module,exports){
 var Vue = require('vue')
 var VueRouter = require('vue-router')
 var Firebase = require('firebase')
@@ -56137,7 +56169,7 @@ Firebase.auth().onAuthStateChanged(function(user) {
 
 })
 
-},{"./App.vue":173,"./Collection.vue":174,"./LogIn.vue":175,"./Profile.vue":176,"./Search.vue":177,"./SignUp.vue":178,"./components/SearchResults.vue":181,"./store/store":183,"firebase":161,"vue":170,"vue-router":169}],183:[function(require,module,exports){
+},{"./App.vue":173,"./Collection.vue":174,"./LogIn.vue":175,"./Profile.vue":176,"./Search.vue":177,"./SignUp.vue":178,"./components/SearchResults.vue":182,"./store/store":184,"firebase":161,"vue":170,"vue-router":169}],184:[function(require,module,exports){
 var Vue = require('vue')
 var Vuex = require('vuex')
 var Firebase = require('firebase')
@@ -56296,4 +56328,4 @@ var store = new Vuex.Store({
 })
 
 module.exports = store
-},{"firebase":161,"vue":170,"vuex":172}]},{},[182]);
+},{"firebase":161,"vue":170,"vuex":172}]},{},[183]);
