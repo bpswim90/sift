@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        <div id="collection">
+        <div id="collection" class="mb-5">
             <div class="d-flex justify-content-between my-2">
                 <h1 class="my-auto">
                     {{collectionName()}}
