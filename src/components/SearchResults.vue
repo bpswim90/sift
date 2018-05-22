@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mb-5">
         <div class="filters mt-2" v-show="recipes.length !== 0">
             <button type="button" class="btn btn-secondary mr-1"
                 v-on:click="resetFavoriteSources">Reset</button>
