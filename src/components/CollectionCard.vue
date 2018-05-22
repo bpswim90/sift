@@ -13,14 +13,14 @@
             </div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col px-0">
-                        <img class="img-fluid rounded-left" src="https://www.edamam.com/web-img/c42/c423e9709acd75bcf5806436eddc74c2.jpg">
+                    <div class="col px-0 bg-light">
+                        <img class="img-fluid rounded-left" src="src/assets/grey_filler.jpg">
                     </div>
-                    <div class="col px-1">
-                        <img class="img-fluid" src="https://www.edamam.com/web-img/6c9/6c9960eaf107c71cffdaed4e57ff8bdf.jpg">
+                    <div class="col px-1 bg-light">
+                        <img class="img-fluid" src="src/assets/grey_filler.jpg">
                     </div>
-                    <div class="col px-0">
-                        <img class="img-fluid rounded-right" src="https://www.edamam.com/web-img/35f/35f25638bc22fd3de19b2bf3fcf75c27.jpg">
+                    <div class="col px-0 bg-light">
+                        <img class="img-fluid rounded-right" src="src/assets/grey_filler.jpg">
                     </div>
                 </div>
             </div>
