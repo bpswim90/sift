@@ -14,13 +14,13 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col px-0 bg-light">
-                        <img class="img-fluid rounded-left" src="src/assets/grey_filler.jpg">
+                        <img class="img-fluid rounded-left" :src="img1src">
                     </div>
                     <div class="col px-1 bg-light">
-                        <img class="img-fluid" src="src/assets/grey_filler.jpg">
+                        <img class="img-fluid" :src="img2src">
                     </div>
                     <div class="col px-0 bg-light">
-                        <img class="img-fluid rounded-right" src="src/assets/grey_filler.jpg">
+                        <img class="img-fluid rounded-right" :src="img3src">
                     </div>
                 </div>
             </div>
@@ -52,6 +52,13 @@
 <script>
 module.exports = {
     props: ['collection','index','editMode'],
+    data: function() {
+        return {
+            img1src: 'src/assets/grey_filler.jpg',
+            img2src: 'src/assets/grey_filler.jpg',
+            img3src: 'src/assets/grey_filler.jpg'
+        }
+    },
     methods: {
         removeCollection: function(collectionId, index) {
             this.$store.dispatch('removeCollection',collectionId)
