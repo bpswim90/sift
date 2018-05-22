@@ -50,14 +50,37 @@
 </template>
 
 <script>
+var Firebase = require('firebase')
+
 module.exports = {
     props: ['collection','index','editMode'],
     data: function() {
         return {
-            img1src: 'src/assets/grey_filler.jpg',
-            img2src: 'src/assets/grey_filler.jpg',
-            img3src: 'src/assets/grey_filler.jpg'
+            imgSources: []
         }
+    },
+    computed: {
+        img1src: function() {
+            if (this.imgSources[0]) {
+                return this.imgSources[0]
+            } else {
+                return 'src/assets/grey_filler.jpg'
+            }
+        },
+        img2src: function() {
+            if (this.imgSources[1]) {
+                return this.imgSources[1]
+            } else {
+                return 'src/assets/grey_filler.jpg'
+            }
+        },
+        img3src: function() {
+            if (this.imgSources[2]) {
+                return this.imgSources[2]
+            } else {
+                return 'src/assets/grey_filler.jpg'
+            }
+        },
     },
     methods: {
         removeCollection: function(collectionId, index) {
@@ -66,6 +89,21 @@ module.exports = {
             var removeCollectionModal = '#removeCollection' + index
             $(removeCollectionModal).modal('hide')
         }
+    },
+    created: function() {
+        var ref = Firebase.database().ref('/recipes/' + this.collection.key)
+
+        var imgSourcesList = []
+        ref.limitToLast(3).on("value", function(data) {
+            imgSourcesList.splice(0,imgSourcesList.length)
+            data.forEach(function(data) {
+                var recipeObj = data.val()
+                var imgSource = recipeObj.img
+                imgSourcesList.push(imgSource)
+            })
+        })
+
+        this.imgSources = imgSourcesList
     }
 }
 </script>
