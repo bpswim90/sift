@@ -7,6 +7,7 @@
             <form v-on:submit.prevent="signUp">
                 <input type="email" class="form-control mb-1" placeholder="E-mail" v-model="email">
                 <input type="password" class="form-control mb-1" placeholder="Password" v-model="password">
+                <input type="password" class="form-control mb-1" placeholder="Confirm password" v-model="verify">
                 <button type="submit" class="btn btn-primary form-control">Sign Up</button>
             </form>
         </div>
@@ -25,19 +26,26 @@ module.exports = {
     data: function() {
         return {
             email: "",
-            password: ""
+            password: "",
+            verify: ""
         }
     },
     methods: {
         signUp: function() {
-            Firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-                    user => {
-                        this.$router.replace('/search')
-                    },
-                    error => {
-                        alert(error.message)
-                    }
-                )
+            if (this.password === this.verify) {
+                Firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+                        user => {
+                            this.$router.replace('/search')
+                        },
+                        error => {
+                            alert(error.message)
+                        }
+                    )
+            } else {
+                alert('Passwords do not match, please try again.')
+                this.password = ""
+                this.verify = ""
+            }
         }
     }
 }

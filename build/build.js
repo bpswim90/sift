@@ -55630,6 +55630,7 @@ var __vueify_style_dispose__ = require("vueify/lib/insert-css").insert("#signup 
 //
 //
 //
+//
 
 var Firebase = require('firebase')
 
@@ -55638,19 +55639,26 @@ module.exports = {
     data: function() {
         return {
             email: "",
-            password: ""
+            password: "",
+            verify: ""
         }
     },
     methods: {
         signUp: function() {
-            Firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-                    user => {
-                        this.$router.replace('/search')
-                    },
-                    error => {
-                        alert(error.message)
-                    }
-                )
+            if (this.password === this.verify) {
+                Firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+                        user => {
+                            this.$router.replace('/search')
+                        },
+                        error => {
+                            alert(error.message)
+                        }
+                    )
+            } else {
+                alert('Passwords do not match, please try again.')
+                this.password = ""
+                this.verify = ""
+            }
         }
     }
 }
@@ -55659,7 +55667,7 @@ module.exports = {
 if (module.exports.__esModule) module.exports = module.exports.default
 var __vue__options__ = (typeof module.exports === "function"? module.exports.options: module.exports)
 if (__vue__options__.functional) {console.error("[vueify] functional components are not supported and should be defined in plain js files using render functions.")}
-__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_c('div',{staticClass:"card mx-auto",attrs:{"id":"signup"}},[_c('div',{staticClass:"card-body p-5"},[_c('h5',{staticClass:"card-title mb-3"},[_vm._v("Sign up for sift.")]),_vm._v(" "),_c('p',{staticClass:"card-subtitle text-muted mb-5"},[_vm._v("Create an account to begin searching for recipes.")]),_vm._v(" "),_c('form',{on:{"submit":function($event){$event.preventDefault();return _vm.signUp($event)}}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.email),expression:"email"}],staticClass:"form-control mb-1",attrs:{"type":"email","placeholder":"E-mail"},domProps:{"value":(_vm.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.email=$event.target.value}}}),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.password),expression:"password"}],staticClass:"form-control mb-1",attrs:{"type":"password","placeholder":"Password"},domProps:{"value":(_vm.password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.password=$event.target.value}}}),_vm._v(" "),_c('button',{staticClass:"btn btn-primary form-control",attrs:{"type":"submit"}},[_vm._v("Sign Up")])])]),_vm._v(" "),_c('div',{staticClass:"card-footer text-muted text-center"},[_c('small',[_vm._v("Already signed up? "),_c('router-link',{attrs:{"to":"/login"}},[_vm._v("Log in here.")])],1)])])])}
+__vue__options__.render = function render () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{attrs:{"id":"app"}},[_c('div',{staticClass:"card mx-auto",attrs:{"id":"signup"}},[_c('div',{staticClass:"card-body p-5"},[_c('h5',{staticClass:"card-title mb-3"},[_vm._v("Sign up for sift.")]),_vm._v(" "),_c('p',{staticClass:"card-subtitle text-muted mb-5"},[_vm._v("Create an account to begin searching for recipes.")]),_vm._v(" "),_c('form',{on:{"submit":function($event){$event.preventDefault();return _vm.signUp($event)}}},[_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.email),expression:"email"}],staticClass:"form-control mb-1",attrs:{"type":"email","placeholder":"E-mail"},domProps:{"value":(_vm.email)},on:{"input":function($event){if($event.target.composing){ return; }_vm.email=$event.target.value}}}),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.password),expression:"password"}],staticClass:"form-control mb-1",attrs:{"type":"password","placeholder":"Password"},domProps:{"value":(_vm.password)},on:{"input":function($event){if($event.target.composing){ return; }_vm.password=$event.target.value}}}),_vm._v(" "),_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.verify),expression:"verify"}],staticClass:"form-control mb-1",attrs:{"type":"password","placeholder":"Confirm password"},domProps:{"value":(_vm.verify)},on:{"input":function($event){if($event.target.composing){ return; }_vm.verify=$event.target.value}}}),_vm._v(" "),_c('button',{staticClass:"btn btn-primary form-control",attrs:{"type":"submit"}},[_vm._v("Sign Up")])])]),_vm._v(" "),_c('div',{staticClass:"card-footer text-muted text-center"},[_c('small',[_vm._v("Already signed up? "),_c('router-link',{attrs:{"to":"/login"}},[_vm._v("Log in here.")])],1)])])])}
 __vue__options__.staticRenderFns = []
 if (module.hot) {(function () {  var hotAPI = require("vue-hot-reload-api")
   hotAPI.install(require("vue"), true)
