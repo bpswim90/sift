@@ -35,6 +35,13 @@
         </div>
     </nav>
 
+    <div class="alert alert-success alert-dismissable fade show fixed-bottom mx-3 mx-auto" role="alert" v-for="message in notifications">
+        {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span>&times;</span>
+        </button>
+    </div>
+
     <router-view v-bind:recipes="recipes" v-bind:userEmail="userEmail" v-bind:userFavoritesWithId="userFavoritesWithId"
         v-bind:userFavoritesArray="userFavoritesArray"></router-view>
 
@@ -61,7 +68,8 @@ module.exports = {
         return {
             recipes: [],
             searchTerm: "",
-            userFavoritesWithId: []
+            userFavoritesWithId: [],
+            notifications: ['Now logged in as bpswim90@gmail.com']
         }
     },
     computed: {
@@ -78,6 +86,7 @@ module.exports = {
     },
     created: function() {
         this.userFavoritesWithId = this.$store.getters.getUserFavorites
+        setTimeout(function() { $(".alert").alert('close')}, 5000)
     },
     methods: {
         //Search with no filters
@@ -125,6 +134,13 @@ module.exports = {
 </script>
 
 <style>
+.alert-success {
+    bottom: 48px;
+    max-width: 500px;
+    z-index: 1;
+    text-align: center
+}
+
 .dropdown-menu-right {
     right: 0;
     left: auto;
