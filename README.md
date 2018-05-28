@@ -8,17 +8,32 @@ The internet is replete with recipes and recipe websites. In fact I think there 
 
 ## How it works. 
 
-Users type in a search term and hit search. Upon returning the results, a row of filters shows up below the search bar. Users can select one or more of these filters to adjust the results they see, and if they see a result they like they can click the result to be redirected to the website it came from.
+### Recipe Search
+
+Users type in a search term and hit search. Upon returning the results, a row of filters shows up below the search bar. Users can select one or more of these filters to adjust the results they see. Results are displayed as cards, which show an image of the recipe, a link to its origin, the name of the origin with a button for adding the site to the user's favorites, and a "+" button for adding the recipe to a collection. 
+
+### Favorite Sources
+
+Each result card shows the recipe's origin and a heart button for adding the site to their favorites. Simply click to add to the favorites list. Users can review their list of favorites in their profile, and optionally remove any they no longer want. Additionally, users can perform a recipe search from just their favorite sites by clicking the dropdown next to the search icon. 
+
+### Collections
+
+Users can create a new collection in their profile by clicking "Add New" in their "My Collections" section. Once users have created a collection they can add a recipe to it from search results by clicking the "+" button on a result card. The user will be asked to select a collection and it is then added. Each collection has its own view, from which users can click the "+" button to add a recipe to another collection, or click "Edit" to remove any recipes they no longer want to save. 
+
+### User Profile
+
+The profile view allows users to see their favorite sites and collections at a glance. Users can edit their favorite sources list, and add/remove collections. Each collection also shows thumbnails of the three most recently added recipes. 
 
 ## Technologies involved.
 
-* JavaScript, built using the Vue.js framework
+* JavaScript - Vue.js framework, with vue-router and vuex
+* Browserify + Vueify for bundling 
 * Bootstrap
 * HTML/CSS
+* Firebase Auth
+* Firebase realtime database
 * Edamam recipe search API
 
 ## Future features
 
-* User profile: Individual user profiles with potential to save your list of favorite recipe sites.
-* Recipe collections: Ability to save and organize recipes found from search.
 * Share recipes: Ability to send recipes to others, possibly via e-mail/text. 
