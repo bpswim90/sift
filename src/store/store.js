@@ -9,7 +9,7 @@ var store = new Vuex.Store({
         user: null,
         userFavorites: [],
         userCollections: [],
-        notifications: ['Now logged in as bpswim90']
+        notifications: []
     },
     getters: {
         getUser: state => {
