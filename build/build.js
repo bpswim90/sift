@@ -55347,6 +55347,8 @@ module.exports = {
             Firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                     user => {
                         this.$router.replace('/search')
+                        var logInMessage = "Now logged in as " + this.email
+                        this.$store.commit('addNotification', logInMessage)
                     },
                     error => {
                         alert(error.message)
