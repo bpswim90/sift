@@ -55537,7 +55537,7 @@ module.exports = {
             recipes: [],
             searchTerm: "",
             userFavoritesWithId: [],
-            notifications: ['Now logged in as bpswim90@gmail.com']
+            notifications: []
         }
     },
     computed: {
@@ -55554,7 +55554,8 @@ module.exports = {
     },
     created: function() {
         this.userFavoritesWithId = this.$store.getters.getUserFavorites
-        setTimeout(function() { $(".alert").alert('close')}, 3000)
+        this.notifications = this.$store.getters.getNotifications
+        setTimeout(function() { $(".alert").alert('close')}, 5000)
     },
     methods: {
         //Search with no filters
@@ -56242,7 +56243,8 @@ var store = new Vuex.Store({
     state: {
         user: null,
         userFavorites: [],
-        userCollections: []
+        userCollections: [],
+        notifications: ['Now logged in as bpswim90']
     },
     getters: {
         getUser: state => {
@@ -56263,6 +56265,9 @@ var store = new Vuex.Store({
         },
         getUserCollections: state => {
             return state.userCollections
+        },
+        getNotifications: state => {
+            return state.notifications
         }
     },
     mutations: {
@@ -56274,6 +56279,12 @@ var store = new Vuex.Store({
         },
         setUserCollections: (state, theUserCollections) => {
             state.userCollections = theUserCollections
+        },
+        addNotification: (state, notification) => {
+            state.notifications.push(notification)
+        },
+        clearNotifications: (state) => {
+            state.notifications = []
         }
     },
     actions: {

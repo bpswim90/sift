@@ -8,7 +8,8 @@ var store = new Vuex.Store({
     state: {
         user: null,
         userFavorites: [],
-        userCollections: []
+        userCollections: [],
+        notifications: ['Now logged in as bpswim90']
     },
     getters: {
         getUser: state => {
@@ -29,6 +30,9 @@ var store = new Vuex.Store({
         },
         getUserCollections: state => {
             return state.userCollections
+        },
+        getNotifications: state => {
+            return state.notifications
         }
     },
     mutations: {
@@ -40,6 +44,12 @@ var store = new Vuex.Store({
         },
         setUserCollections: (state, theUserCollections) => {
             state.userCollections = theUserCollections
+        },
+        addNotification: (state, notification) => {
+            state.notifications.push(notification)
+        },
+        clearNotifications: (state) => {
+            state.notifications = []
         }
     },
     actions: {

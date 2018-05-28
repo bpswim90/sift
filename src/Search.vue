@@ -69,7 +69,7 @@ module.exports = {
             recipes: [],
             searchTerm: "",
             userFavoritesWithId: [],
-            notifications: ['Now logged in as bpswim90@gmail.com']
+            notifications: []
         }
     },
     computed: {
@@ -86,6 +86,7 @@ module.exports = {
     },
     created: function() {
         this.userFavoritesWithId = this.$store.getters.getUserFavorites
+        this.notifications = this.$store.getters.getNotifications
         setTimeout(function() { $(".alert").alert('close')}, 5000)
     },
     methods: {
