@@ -37,6 +37,7 @@ module.exports = {
                         user => {
                             this.$router.replace('/search')
                             var logInMessage = "Now logged in as " + this.email
+                            this.$store.commit('clearNotifications')
                             this.$store.commit('addNotification', logInMessage)
                         },
                         error => {

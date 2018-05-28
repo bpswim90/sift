@@ -121,6 +121,10 @@ module.exports = {
             var addToCollectionModal = '#addToCollection' + this.index
 
             this.$store.dispatch('addToCollection', collectionAndRecipe)
+            var addRecipeMessage = this.name + ' has been added to your collection.'
+            this.$store.commit('addNotification', addRecipeMessage)
+            setTimeout(function() { $(".alert").alert('close')}, 5000)
+
             $(addToCollectionModal).modal('hide')
         },
         removeFromCollection: function() {

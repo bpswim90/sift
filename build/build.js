@@ -55348,6 +55348,7 @@ module.exports = {
                     user => {
                         this.$router.replace('/search')
                         var logInMessage = "Now logged in as " + this.email
+                        this.$store.commit('clearNotifications')
                         this.$store.commit('addNotification', logInMessage)
                     },
                     error => {
@@ -55662,6 +55663,7 @@ module.exports = {
                         user => {
                             this.$router.replace('/search')
                             var logInMessage = "Now logged in as " + this.email
+                            this.$store.commit('clearNotifications')
                             this.$store.commit('addNotification', logInMessage)
                         },
                         error => {
@@ -56012,6 +56014,10 @@ module.exports = {
             var addToCollectionModal = '#addToCollection' + this.index
 
             this.$store.dispatch('addToCollection', collectionAndRecipe)
+            var addRecipeMessage = this.name + ' has been added to your collection.'
+            this.$store.commit('addNotification', addRecipeMessage)
+            setTimeout(function() { $(".alert").alert('close')}, 5000)
+
             $(addToCollectionModal).modal('hide')
         },
         removeFromCollection: function() {
@@ -56288,7 +56294,7 @@ var store = new Vuex.Store({
             state.notifications.push(notification)
         },
         clearNotifications: (state) => {
-            state.notifications = []
+            state.notifications.splice(0,state.notifications.length)
         }
     },
     actions: {

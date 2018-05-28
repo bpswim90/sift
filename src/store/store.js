@@ -49,7 +49,7 @@ var store = new Vuex.Store({
             state.notifications.push(notification)
         },
         clearNotifications: (state) => {
-            state.notifications = []
+            state.notifications.splice(0,state.notifications.length)
         }
     },
     actions: {
