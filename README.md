@@ -14,11 +14,11 @@ Users type in a search term and hit search. Upon returning the results, a row of
 
 ### Favorite Sources
 
-Each result card shows the recipe's origin and a heart button for adding the site to their favorites. Simply click to add to the favorites list. Users can review their list of favorites in their profile, and optionally remove any they no longer want. Additionally, users can perform a recipe search from just their favorite sites by clicking the dropdown next to the search icon. 
+Users can add sites to their list of favorites by clicking the ❤️ found next to a site's name on a result card. Users with a list of favorites can then optionally perform recipe searches using just their favorite sources.
 
 ### Collections
 
-Users can create a new collection in their profile by clicking "Add New" in their "My Collections" section. Once users have created a collection they can add a recipe to it from search results by clicking the "+" button on a result card. The user will be asked to select a collection and it is then added. Each collection has its own view, from which users can click the "+" button to add a recipe to another collection, or click "Edit" to remove any recipes they no longer want to save. 
+Users can create a new collection in their profile by clicking "Add New" in their "My Collections" section. Once users have created a collection they can add a recipe to it from search results by clicking the "+" button on a result card. Each collection has its own view, from which users can add a recipe to another collection, or click "Edit" to remove any recipes they no longer want to save. 
 
 ### User Profile
 
