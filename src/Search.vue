@@ -35,11 +35,8 @@
         </div>
     </nav>
 
-    <div class="alert alert-success alert-dismissable fade show fixed-bottom mx-3 mx-auto" role="alert" v-for="message in notifications">
+    <div class="alert alert-success alert-dismissable fade show fixed-bottom" role="alert" v-for="message in notifications">
         {{message}}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span>&times;</span>
-        </button>
     </div>
 
     <router-view v-bind:recipes="recipes" v-bind:userEmail="userEmail" v-bind:userFavoritesWithId="userFavoritesWithId"
@@ -137,7 +134,6 @@ module.exports = {
 <style>
 .alert-success {
     bottom: 48px;
-    max-width: 500px;
     z-index: 1;
     text-align: center
 }
