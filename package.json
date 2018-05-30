@@ -4,6 +4,8 @@
   "description": "A vue.js project",
   "main": "src/main.js",
   "dependencies": {
+    "browserify": "^16.2.2",
+    "envify": "^4.1.0",
     "firebase": "^4.12.1",
     "lodash": "^4.17.10",
     "vue": "^2.5.16",
@@ -16,14 +18,14 @@
   "scripts": {
     "serve": "http-server -o -c-1 -a localhost",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "browserify -t vueify -e src/main.js -o build/build.js"
+    "build": "NODE_ENV=production browserify -t vueify -e src/main.js -o build/build.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bpswim90/sift.git"
   },
   "author": "William Paulsen <bpswim90@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/bpswim90/sift/issues"
   },
