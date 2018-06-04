@@ -55328,7 +55328,7 @@ module.exports = {
     components: {
         'search-results': SearchResults
     },
-    data: function () {
+    data: function() {
         return {
             recipes: [],
             searchTerm: "",
@@ -55337,11 +55337,11 @@ module.exports = {
         }
     },
     computed: {
-        userEmail: function() {
-            return this.$store.getters.getUserEmail
+        userEmail() { 
+            return this.$store.getters.getUserEmail 
         },
-        userFavoritesArray: function() {
-            var favoritesArray = []
+        userFavoritesArray() {
+            let favoritesArray = []
             this.userFavoritesWithId.forEach(function(favorite) {
                 favoritesArray.push(favorite.value)
             })
@@ -55356,34 +55356,32 @@ module.exports = {
     methods: {
         //Search with no filters
         recipeSearch: _.throttle(function () {
-            var app = this
             this.$router.push('/search')
 
-            app.recipes = []
+            this.recipes = []
             
             $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=50",
-                function(json) {
+                (json) => {
                     
-                    json.hits.forEach(function (result) {
-                        app.recipes.push(result.recipe)
+                    json.hits.forEach((result) => {
+                        this.recipes.push(result.recipe)
                     })
                 }
             )
         }, 15000),
         //For performing a new search with your favorites
         favoriteSearch: _.throttle(function() {
-            var app = this
             this.$router.push('/search')
 
-            app.recipes = []
+            this.recipes = []
 
             $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=50",
-                function(json) {
-                    var filteredRecipes = json.hits.filter(function (result) {
-                        return (app.userFavoritesArray.indexOf(result.recipe.source) !== -1)
+                (json) => {
+                    var filteredRecipes = json.hits.filter((result) => {
+                        return (this.userFavoritesArray.indexOf(result.recipe.source) !== -1)
                     })
-                    filteredRecipes.forEach(function(result) {
-                        app.recipes.push(result.recipe)
+                    filteredRecipes.forEach((result) => {
+                        this.recipes.push(result.recipe)
                     })
                 }
             )
