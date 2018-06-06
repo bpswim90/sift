@@ -55161,7 +55161,7 @@ module.exports = {
         }
     },
     methods: {
-        logIn: function() {
+        logIn() {
             Firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                     user => {
                         this.$router.replace('/search')
@@ -55437,7 +55437,7 @@ module.exports = {
         }
     },
     methods: {
-        signUp: function() {
+        signUp() {
             if (this.password === this.verify) {
                 Firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                         user => {

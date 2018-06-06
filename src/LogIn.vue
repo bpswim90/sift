@@ -29,7 +29,7 @@ module.exports = {
         }
     },
     methods: {
-        logIn: function() {
+        logIn() {
             Firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                     user => {
                         this.$router.replace('/search')

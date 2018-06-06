@@ -31,7 +31,7 @@ module.exports = {
         }
     },
     methods: {
-        signUp: function() {
+        signUp() {
             if (this.password === this.verify) {
                 Firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                         user => {
