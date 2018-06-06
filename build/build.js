@@ -55342,7 +55342,7 @@ module.exports = {
         },
         userFavoritesArray() {
             let favoritesArray = []
-            this.userFavoritesWithId.forEach(function(favorite) {
+            this.userFavoritesWithId.forEach(favorite => {
                 favoritesArray.push(favorite.value)
             })
             return favoritesArray
@@ -55351,7 +55351,7 @@ module.exports = {
     created() {
         this.userFavoritesWithId = this.$store.getters.getUserFavorites
         this.notifications = this.$store.getters.getNotifications
-        setTimeout(function() { $(".alert").alert('close')}, 5000)
+        setTimeout(() => { $(".alert").alert('close')}, 5000)
     },
     methods: {
         //Search with no filters
