@@ -36,7 +36,7 @@ module.exports = {
                 Firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                         user => {
                             this.$router.replace('/search')
-                            var logInMessage = "Now logged in as " + this.email
+                            const logInMessage = "Now logged in as " + this.email
                             this.$store.commit('clearNotifications')
                             this.$store.commit('addNotification', logInMessage)
                         },

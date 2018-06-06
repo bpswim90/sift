@@ -55165,7 +55165,7 @@ module.exports = {
             Firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                     user => {
                         this.$router.replace('/search')
-                        var logInMessage = "Now logged in as " + this.email
+                        const logInMessage = "Now logged in as " + this.email
                         this.$store.commit('clearNotifications')
                         this.$store.commit('addNotification', logInMessage)
                     },
@@ -55442,7 +55442,7 @@ module.exports = {
                 Firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                         user => {
                             this.$router.replace('/search')
-                            var logInMessage = "Now logged in as " + this.email
+                            const logInMessage = "Now logged in as " + this.email
                             this.$store.commit('clearNotifications')
                             this.$store.commit('addNotification', logInMessage)
                         },
@@ -56032,14 +56032,14 @@ var store = new Vuex.Store({
 
         //userFavorites methods
         setUserFavorites: context => {
-            var ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites')
+            const ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites')
 
-            var theList = []
-            ref.on("value", function(data) {
+            const theList = []
+            ref.on("value", data => {
                 //List must be cleared every time .on is run so it doesn't hold the old values
                 theList.splice(0,theList.length)
-                data.forEach(function(data) {
-                    var item = {
+                data.forEach(data => {
+                    const item = {
                         key: data.key,
                         value: data.val()
                         }
@@ -56050,13 +56050,13 @@ var store = new Vuex.Store({
             context.commit('setUserFavorites',theList)
         },
         addToUserFavorites: (context, source) => {
-            var ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites')
+            const ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites')
 
-            var theList = []
-            ref.on("value", function(data) {
+            const theList = []
+            ref.on("value", data => {
                 //List must be cleared every time .on is run so it doesn't hold the old values
                 theList.splice(0,theList.length)
-                data.forEach(function(data) {
+                data.forEach(data => {
                     theList.push(data.val())
                 })
             })
@@ -56066,26 +56066,26 @@ var store = new Vuex.Store({
             }
         },
         removeUserFavorite: (context, favoriteId) => {
-            var ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites/' + favoriteId)
+            const ref = Firebase.database().ref('/users/' + context.getters.getUserId + '/favorites/' + favoriteId)
             ref.remove()
         },
 
         //userCollection methods  
         addNewCollection: (context, collectionName) => {
-            var  collectionData = {
+            const  collectionData = {
                 name: collectionName
             }
 
-            var newCollectionKey = Firebase.database().ref().child('collections').push().key
+            const newCollectionKey = Firebase.database().ref().child('collections').push().key
 
-            var updates = {}
+            const updates = {}
             updates['/collections/' + context.getters.getUserId + '/' + newCollectionKey] = collectionData
             updates['/users/' + context.getters.getUserId + '/collections/' + newCollectionKey] = true
 
             Firebase.database().ref().update(updates)
         },
         removeCollection: (context, collectionId) => {
-            var updates = {}
+            const updates = {}
             updates['/collections/' + context.getters.getUserId + '/' + collectionId] = null
             updates['/users/' + context.getters.getUserId + '/collections/' + collectionId] = null
             updates['/recipes/' + collectionId] = null
@@ -56093,14 +56093,14 @@ var store = new Vuex.Store({
             Firebase.database().ref().update(updates)
         },
         setUserCollections: context => {
-            var ref = Firebase.database().ref('/collections/' + context.getters.getUserId)
+            const ref = Firebase.database().ref('/collections/' + context.getters.getUserId)
             
-            var theList = []
-            ref.on("value", function(data) {
+            const theList = []
+            ref.on("value", data => {
 
                 theList.splice(0,theList.length)
-                data.forEach(function(data) {
-                    var item = {
+                data.forEach(data => {
+                    const item = {
                         key: data.key,
                         name: data.val().name
                     }
@@ -56112,13 +56112,11 @@ var store = new Vuex.Store({
         },
         //Adds recipe to collection
         addToCollection: (context, collectionAndRecipe) => {
-            var newRecipeKey = Firebase.database().ref().child('recipes').push().key
+            const newRecipeKey = Firebase.database().ref().child('recipes').push().key
 
-            var collectionId = collectionAndRecipe.collectionId
-            var recipe = collectionAndRecipe.recipe
+            const { collectionId, recipe } = collectionAndRecipe
 
-            var updates = {}
-            //TODO: Change hard coded collection ID to a variable received from parameter.
+            const updates = {}
             updates['/recipes/' + collectionId + '/' + newRecipeKey] = recipe
             updates['/collections/' + context.getters.getUserId + '/' + collectionId + '/recipes/' + newRecipeKey] = true
 
@@ -56126,10 +56124,10 @@ var store = new Vuex.Store({
         },
         //Removes recipe from collection
         removeFromCollection: (context, collectionAndRecipe) => {
-            var collectionId = collectionAndRecipe.collectionId
-            var recipeId = collectionAndRecipe.recipeId
 
-            var updates = {}
+            const { collectionId, recipeId } = collectionAndRecipe
+
+            const updates = {}
             updates['/recipes/' + collectionId + '/' + recipeId] = null
             updates['/collections/' + context.getters.getUserId + '/' + collectionId + '/recipes/' + recipeId] = null
 
