@@ -55328,7 +55328,7 @@ module.exports = {
     components: {
         'search-results': SearchResults
     },
-    data: function() {
+    data() {
         return {
             recipes: [],
             searchTerm: "",
@@ -55348,7 +55348,7 @@ module.exports = {
             return favoritesArray
         }
     },
-    created: function() {
+    created() {
         this.userFavoritesWithId = this.$store.getters.getUserFavorites
         this.notifications = this.$store.getters.getNotifications
         setTimeout(function() { $(".alert").alert('close')}, 5000)
@@ -55377,7 +55377,7 @@ module.exports = {
 
             $.getJSON("https://api.edamam.com/search?q=" + this.searchTerm + "&app_id=1a3c4674&app_key=4dc3b79571f6296aef24bb347b2a75fc&from=0&to=50",
                 (json) => {
-                    var filteredRecipes = json.hits.filter((result) => {
+                    const filteredRecipes = json.hits.filter((result) => {
                         return (this.userFavoritesArray.indexOf(result.recipe.source) !== -1)
                     })
                     filteredRecipes.forEach((result) => {
@@ -55387,7 +55387,7 @@ module.exports = {
             )
         }, 15000),
 
-        logOut: function() {
+        logOut() {
             Firebase.auth().signOut().then(() => {
                 this.$router.replace('/login')
             })
