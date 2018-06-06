@@ -8,13 +8,13 @@
 module.exports = {
     name: 'app',
     methods: {
-        setUser: function() {
+        setUser() {
             this.$store.dispatch('setUser')
         },
-        setUserFavorites: function() {
+        setUserFavorites() {
             this.$store.dispatch('setUserFavorites')
         },
-        setUserCollections: function() {
+        setUserCollections() {
             this.$store.dispatch('setUserCollections')
         }
     },
