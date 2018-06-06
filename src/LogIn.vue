@@ -22,7 +22,7 @@ var Firebase = require('firebase')
 
 module.exports = {
     name: 'app',
-    data: function() {
+    data() {
         return {
             email: "",
             password: ""
@@ -33,7 +33,7 @@ module.exports = {
             Firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                     user => {
                         this.$router.replace('/search')
-                        const logInMessage = "Now logged in as " + this.email
+                        const logInMessage = `Now logged in as ${this.email}`
                         this.$store.commit('clearNotifications')
                         this.$store.commit('addNotification', logInMessage)
                     },
